@@ -1,0 +1,73 @@
+<!-- ex02_v-if.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <style>
+        div > span {
+            color: blue;
+            font-size: 1.4em;
+        }
+    </style>
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+</head>
+
+<body>
+    <pre>
+
+      v-if : 조건이 false일 경우 삭제됨.
+             template구문 사용 가능
+
+      v-show : style의 display속성을 변경하여 보여주거나 감춘다.
+               display:none;  <---> display:block;
+               template 엘리먼트에 사용 불가
+    </pre>
+    <hr>
+
+    <h2>v-if와 template 태그 실습</h2>
+    <div id="app">
+        <button v-on:click="clickChange">까꿍</button>
+        <span>showMe >> {{showMe}}</span>
+        <p></p>
+
+        <template v-if="showMe">
+            <h1>hi</h1>
+            <p>hello</p>
+            <button>nice</button>
+        </template>
+        <template v-else>
+            <h1>하이</h1>
+            <p>good</p>
+        </template>
+    </div>
+    <hr>
+
+    <h2>v-show 와 template 태그 실습</h2>
+    <div id="app4">
+        <button v-on:click="clickBind">클릭</button>
+        <span> showhide >> {{showhide}}</span>
+        <p></p>
+        <template v-show="showhide">
+            <h3>Heading</h3>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+    
+</body>
+
+</html>
+

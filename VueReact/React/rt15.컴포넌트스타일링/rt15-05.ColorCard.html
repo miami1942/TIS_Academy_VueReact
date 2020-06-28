@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Color Card</title>
+
+    <link rel="stylesheet" href="../css/reset.css"/>
+
+    <style>
+        body > div {
+            padding: 50px;
+            background-color: #ffffff;
+        }
+        .card {
+            display: inline-block;
+            height: 200px;
+            width: 150px;
+            padding: 0;
+            margin: 10px;
+            background-color: #ffffff;
+            webkit-filter: drop-shadow(0px 0px 5px #666666);
+            filter: drop-shadow(0px 0px 5px #666666);
+        }
+        .square {
+            height: 150px;
+            background-color: #ff6663;
+        }
+        .label {
+            font-family: sans-serif;
+            font-weight: bold;
+            padding: 13px;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <xmp>
+        CSS로 만든 카드를 컴포넌트로 만들어 본다.
+    </xmp>
+    <hr>
+
+    <h2>CSS로 만든 카드</h2>
+    <div>
+        <div>
+            <div class="card">
+                <div class="square" style="background-color: #ff6663;">
+                </div>
+                <div class="label">
+                    #ff6663
+                </div>
+            </div>
+            <div class="card">
+                <div class="square" style="background-color: #ffa737;">
+                </div>
+                <div class="label">
+                    #ffa737
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>컴포넌트로 만든 카드</h2>
+    <div id="app">
+
+    </div>
+</body>
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>js 카운터</title>
+
+    <link rel="stylesheet" href="../css/reset.css"/>
+
+    <style>
+        .styleDiv {
+            width: 250px;
+            text-align: center;
+            background-color: black;
+            padding: 40px;
+            font-family: sans-serif;
+            color: #999999;
+            border-radius: 10px;
+        }
+
+        .styleCounter {
+            color: #66FFFF;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <xmp>
+        번개 친 횟수를 기록하는, 그림과 같은 간단한 번개 카운터를 만들어 보자.
+        setlnterval 함수를 사용해 1,000ms(1 초)마다 한 번에 100만큼 값을 증가시키는 코드다.
+
+        getInitialState: 이 메소드는 컴포넌트가 마운트되기 전에 실행되며 컴포넌트의 state 객체를 변경할 수 있게 해준다.
+        componentDidMount: 이 메소드는 컴포넌트가 렌더링(또는 마운트)된 후에 실행 된다 .
+        setState: 이 메소드는 state 객체의 값을 갱신할 수 있게 해준다.
+    </xmp>
+
+    <div id="app">
+        <div class="styleDiv">
+            <h1 class="styleCounter" id="counter"> &nbsp;</h1>
+        </div>
+    </div>
+</body>
+
+</html>
+

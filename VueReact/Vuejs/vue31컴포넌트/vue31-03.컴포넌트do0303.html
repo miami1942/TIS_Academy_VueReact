@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Component Registration</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <xmp>
+        Vue 컴포넌트 만드는 방법을 배운다.
+
+        컴포넌트는
+            재사용 가능한 코드
+            template을 보완하여 만든 요소다.
+            Vue 컴포넌트는 인스턴스의 모든 옵션을 사용할 수 있다
+            여러개의 Component 사용이 가능하다.
+
+        왜 컴포넌트를 사용하는가?
+            컴포넌트를 재사용하기 위해서.
+
+        [참조]
+            교재 page 52~61, 65
+            https://kr.vuejs.org/v2/guide/components.html
+    </xmp>
+    <hr>
+
+    <div id="app">
+        <h2>컴포넌트 등록</h2>
+
+        <global-component v-bind:propsdata="globalmsg1"></global-component>
+        <global-component v-bind:propsdata="globalmsg2"></global-component>
+        <hr>
+        <local-component v-bind:localmsg="localmsg1"></local-component>
+        <local-component v-bind:localmsg="localmsg2"></local-component>
+    </div>
+
+</body>
+</html>

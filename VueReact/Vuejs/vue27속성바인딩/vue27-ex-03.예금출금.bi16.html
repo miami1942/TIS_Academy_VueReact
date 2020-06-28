@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <xmp>
+        이벤트 처리
+        [1] data 속성 : 반응형 속성이다. 값이 바뀌면 자동으로 화면에 변경 사항이 반영된다. ==> 뷰 반응성
+        [4] v-model 디렉티브 : 양방향 데이터 바인딩이 필요한 경우에 사용하는 지시자
+        [7] v-on 디렉티브 : 이벤트가 발생했을 때 실행시킬 함수를 지정하는 지시자
+            v-on:click 디렉티브:클릭 이벤트 처리
+            ==> 줄여 @click으로 코드를 변경해도 된다. v-on대신 @를 사용 가능.
+
+        ---------------------------------------------------
+        기능 추가. 입출금 내역 목록 기능을 추가하여 보자.
+    </xmp>
+    <hr>
+
+    <div id="app" class="container layout1">
+        <p class="mt-5">
+            <input type="text" id="money" v-model="amount" class="form-control"/>
+            <label for=""></label>
+        <p>
+        <p>
+            <button id="deposit" class="btn btn-primary" v-on:click="deposit">예금</button>
+            <button id="withdraw" class="btn btn-primary" v-on:click="withdraw">인출</button>
+        </p>
+        <h3 class="text-danger">계좌 잔고 :{{balance}}</h3>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Router Quiz</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+    
+
+</head>
+<body>
+    <xmp>
+        Vue의 라우팅을 실습한다.
+
+            1. Foo 는 지역 컴포넌트로 만든다.
+            2. Bar 는 전역 컴포넌트로 만든다.
+            3. router-link 설정한다.
+                /bar
+                /foo
+                예시) <router-link to="/foo">Foo</router-link>
+            4. router-view 설정한다.
+            5. VueRouter 인스턴스를 만든다.
+            6. Vue 인스턴스에 VueRouter 인스턴스를 mount 한다.
+
+    </xmp>
+    <hr>
+    <div id="app">
+        <ul>
+            <li>
+                <router-link to="/foo">Link to Foo route</router-link>
+            </li>
+            <li>
+                <router-link to="/bar">Link to Bar route</router-link>
+            </li>
+            <li>
+                <router-view></router-view>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

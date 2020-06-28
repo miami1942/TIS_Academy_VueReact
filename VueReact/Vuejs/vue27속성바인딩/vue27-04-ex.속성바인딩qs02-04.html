@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-04</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+
+<body>
+    <pre>
+
+     양방향 데이터 바인딩을 실습해 본다.
+
+     이 예제는 하나의 모델 객체를 여러 개의 Vue 객체에서 참조한다.
+
+     app에 바인딩하는 ViewModel은 앙방향 데이터 바인딩하여
+     사용자가 입력한 값을 ViewModel 객체를 통해 model 객체의 fruts배열 값을 즉시 변경한다.
+
+     fruits배열에 사용자가 선택한 과일을 추가한 뒤,
+     그 결과를 result 안에 있는 span 태그에 바인딩 되어 나타나게 된다.
+    </pre>
+    <hr>
+
+    <div id="simple1">
+        <input type="text" v-model="name" placeholder="이름을 입력하세요" />
+        <br />
+        입력된 이름 : <span v-html="name"></span>
+    </div>
+    <hr />
+    <div id="simple2">
+        <div>좋아하는 과일을 모두 골라주세요 : </div>
+        <input type="checkbox" id="" name="favorite" value="1" v-model="fruits">사과
+        <input type="checkbox" id="" name="favorite" value="2" v-model="fruits">키위
+        <input type="checkbox" id="" name="favorite" value="3" v-model="fruits">포도
+        <input type="checkbox" id="" name="favorite" value="4" v-model="fruits">수박
+        <input type="checkbox" id="" name="favorite" value="5" v-model="fruits">참외
+        <div>
+            선택한 과일들 :
+            <span v-html="fruits"  style="color:coral ; font-weight : bold; font-size:2em;"></span>
+        </div>
+    </div>
+    <hr />
+	<p>
+	select 박스에 표시될 데이터.
+        "All":"Asia" ,
+        "B":"America" ,
+        "C":"Europe" ,
+        "D":"Africa" ,
+        "E":"Oceania" ,
+	</p>
+    <div id="app" style="max-width:20%;min-width:150px;">
+        <div id="exmaple">
+            <div class="form-group">
+                <label for="">지역을 선택하세요</label>
+                <select class="form-control" name="regions" id="regions" v-model="sel" v-on:change="onChange">
+                    <option disabled selected>::선택하세요::</option>
+                    <option v-for="(val ,key, i ) in regions" v-bind:value="key">
+                        {{i}}:{{val}}
+                    </option>
+                </select>
+            </div>
+            <div id="result">{{sel}}</div>
+        </div>
+    </div>
+</body>
+
+</html>

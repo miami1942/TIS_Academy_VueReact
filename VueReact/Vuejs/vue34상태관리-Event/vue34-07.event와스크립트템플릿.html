@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Event Emit Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <pre>
+        <img src="../images/components_parent_child.png" alt="" srcset="">
+
+      Vue의 상태관리 방법중 props in, event out 을 사용하는 방법을 배운다.
+
+      [참조]page 62~75
+
+      vue eventbus example : https://riptutorial.com/vue-js/example/20840/when-should-i-use-events--
+
+    </pre>
+    <hr>
+    <div id="app">
+        
+
+        <message-box v-bind:msg="message" v-on:new-message="updateMessage"></message-box>
+        <div>You typed: {{message}}</div>
+    </div>
+
+</body>
+</html>

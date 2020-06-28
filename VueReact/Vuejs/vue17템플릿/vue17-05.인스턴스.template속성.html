@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Component Registration</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <xmp>
+        Vue 인스턴스의 template 속성에 대해서서 배운다.
+            template 속성은 순수 HTML코드만을 가진다. 왜냐하면 문자열이기 때문.
+            template 속성은 1개의 root 엘리먼트만 가질 수 있다.
+            template 속성에 root 엘리먼트가 2개 이상이면 div 로 감싸서 출력한다.
+
+            template 속성에 root 엘리먼트가 2개 이상인 경우 오류 발생
+                <h2>a</h2>
+                <h2>b</h2>
+
+            template 속성에 root 엘리먼트가 2개 이상인 경우의 해소 방법: div 로 감싸다.
+                <div>
+                    <h2>a</h2>
+                    <h2>b</h2>
+                </div>
+
+        template 속성이 설정되면 엘리먼트의 innerHTML은 template 속성 설정값으로 치환(replace)된다
+
+        template 속성이 설정되지 않은 경우 data 속성의 값들로 치환된다.
+
+        [참조]page 52~61
+    </xmp>
+    <hr>
+
+    <div id="app">
+        <h2>template 속성이 설정되지 않은 경우</h2>
+        <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
+        <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
+    </div>
+
+    <hr>
+
+    <h2>Vue 인스턴스의 template 속성을 사용하는 경우</h2>
+    <div id="app2">
+        <h2>{{message1}}</h2>
+        <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
+        <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
+    </div>
+
+</body>
+</html>

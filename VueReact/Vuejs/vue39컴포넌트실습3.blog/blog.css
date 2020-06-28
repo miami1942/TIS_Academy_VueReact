@@ -1,0 +1,167 @@
+
+@charset "utf-8"; /* 한글,일본어,중국어등의 문자 처리를 위해서 */
+
+/* 초기화 */
+* { margin: 0; padding: 0; font-family: "맑은 고딕"; }
+a { text-decoration: none; } /* a ling 밑줄 제거 */
+li { list-style:  none; } /* li 기호 제거 */
+
+/* body 설정 */
+body{ width: 960px;
+    margin: 0 auto;
+    background-color: #e6e6e6;
+}
+
+/*수평 가운데 정렬 */
+#page-wrapper {
+    background-color: white;
+    margin: 40px 0 40px 0;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+/* header 설정 */
+#main-header {
+    padding: 40px 50px 40px 50px;
+}
+.master-title {
+    font-size: 30px;
+    color: #181818;
+}
+.master-description {
+    font-size: 15px;
+    font-weight: 500;
+    color: #383838;
+}
+
+/* nav 의 메뉴 부분 설정 */
+#main-navigation {
+    border-top: 1px solid #C8C8C8;
+    border-bottom: 1px solid #C8C8C8;
+    margin: 0 0 20px 0;
+    height: 40px;
+}
+
+.pull-left { float:left; }/* 왼쪽 패치*/
+.pull-right { float: right; } /* 오른쪽 패치*/
+.outer-menu-item  {
+    float: left;
+    position: relative;
+}
+.outer-menu-item:hover {
+    background:black;
+    color: white;
+}
+
+/*서브 메뉴 설정*/
+.menu-title {
+    display: block; /* span 은 inline 태그 이기 때문에 */
+    height: 30px;
+    line-height: 30px; /* 위쪽 공간 */
+    text-align: center;  /* 텍스트 수평 가운데 정렬 */
+    padding: 5px 20px 5px 20px; /* padding: 5px 20px ; */
+}
+.inner-menu {
+    display: none;
+    position: absolute; top: 40px; left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(5, 5, 5, 0.9);
+    z-index: 100;
+    text-align: center;
+}
+.inner-menu-item > a {
+    display: block;
+    padding: 5px 10px;
+    color: black;
+}
+
+.inner-menu-item > a:hover {
+    /*.inner-menu-item 아래의 a 위에 마우스를 올렸을 때 배경색을 검정으로 글자색은 흰색으로 */
+    background-color: black;
+    color: white;
+}
+
+/* nav의 검색 부분 설정*/
+.search-bar{
+    height: 26px;
+    padding: 7px;
+}
+.input-search {
+    display: block;
+    float:left;
+    background-color: #ffffff; /* white */
+    border: 1px solid #cccccc; /* #ccc = gray */
+    border-radius:15px 0  0 15px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    width: 120px;
+    height: 24px; /* .search-bar의 height - 2px( border의 두께 *2) */
+    padding: 0 0 0 10px;
+    color: #555555;
+    font-size: 12px;
+}
+.input-search-submit {
+    display: inline-block;
+    float: left;
+    width: 50px;
+    height: 26px;
+    border-radius: 0 15px 15px 0;
+    border: 1px solid #cccccc; /* #ccc = gray */
+    vertical-align: top;
+    margin: 0 0 0 -1px;
+}
+.input-search:focus, .input-search-submit:focus {
+    border-color: #cccccc;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* 중앙 내용
+    body 태그의 너비: 960픽셀
+    #page-wrapper 태그의 padding 속성으로 너비는 920픽셀 */
+#content { overflow: hidden; }
+#main-section {
+    float: left;
+    width: 710px;
+}
+
+#main-aside {
+    float: right;
+    width: 200px;
+}
+
+/* 좌측 구성 */
+article {
+    padding: 0 10px 20px 10px;
+}
+
+.article-header { padding: 20px 0; }
+.article-title {
+    font-size: 25px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+.article-date { font-size: 13px; }
+.article-body {
+    font-size: 14px;
+}
+
+/* 우측 구성 */
+.aside-list { padding: 10px 0 30px 0; }
+.aside-list > h3 {
+    font-size: 15px;
+    font-weight: 600;
+}
+.aside-list li a {
+    margin-left: 8px;
+    font-size: 13px;
+    color: #6C6C6C;
+}
+
+/* footer 설정 */
+footer {
+    padding: 10px 0 0 0;
+    border-top: 1px solid #C8C8C8;
+    text-align: center;
+
+}

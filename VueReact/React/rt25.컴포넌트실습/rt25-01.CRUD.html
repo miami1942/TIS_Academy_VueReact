@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        .strong {color:red; font-weight:bold; font-size:1.2em;}
+        label { display: inline-block; width: 80px;}
+        #app > div { margin: 5px 0 ;}
+    </style>
+</head>
+<body>
+    <pre>
+        CRUD 방법을 학습한다.
+
+        Object Array 에서 최대값 구하는 방법은 구글 검색을 이용한다.
+        ==> 검색조건: javascript object array max
+        방법1. .map() 를 사용하는 방법
+        방법2. .reducer()
+    </pre>
+    <hr>
+    <div id="app">
+        <div>
+            <h1>Creat Read Update Delete</h1>
+            <div><label for="">Name : </label> <input type="text"></div>
+            <div><label for="">Power : </label> <input type="text"></div> <button>Add</button>
+            <hr>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>POWER</th>
+                    <th>CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="">
+                    <td>1</td>
+                    <td>슈퍼맨</td>
+                    <td>100</td>
+                    <td>
+                        <button>Del</button>
+                        <button>Power Up</button>
+                        <button>Power Down</button>
+                        <button>Edit</button></td>
+                </tr>
+                <tr class="strong">
+                    <td>2</td>
+                    <td>아쿠아맨</td>
+                    <td>300</td>
+                    <td><button>Del</button> <button>Power Up</button> <button>Power Down</button>
+                        <button>Edit</button></td>
+                </tr>
+                <tr class="strong">
+                    <td>3</td>
+                    <td>스파이더맨</td>
+                    <td>500</td>
+                    <td><button>Del</button> <button>Power Up</button> <button>Power Down</button>
+                        <button>Edit</button></td>
+                </tr>
+                <tr class="">
+                    <td>4</td>
+                    <td>배트맨</td>
+                    <td>30</td>
+                    <td><button>Del</button> <button>Power Up</button> <button>Power Down</button>
+                        <button>Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
+
+

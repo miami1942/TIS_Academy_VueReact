@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Template - Event Handling</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <xmp>
+        v-on 디렉티브와 이벤트 핸들러 설정 예제.
+        v-on 디렉티브는 methods 속성과 같이 사용된다.
+
+        [참조]page 105, 106, 107
+    </xmp>
+    <hr>
+
+    <div id="app1">
+        <div>{{num}}</div>
+        <button v-on:click="clickBtn">클릭</button>
+    </div>
+    <div id="app3">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMsg">문자열 역순</button>
+    </div>
+    <hr>
+    <div id="app2">
+        <div>{{num}}</div>
+        <button v-on:click="clickBtn(10)">클릭</button>    <== 실습
+    </div>
+
+</body>
+</html>

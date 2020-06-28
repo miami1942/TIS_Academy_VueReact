@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <pre>
+      computed 과 methods 속성의 사용법과 차이점을 이해한다.
+
+      computed 속성은
+      지정한 값은 함수지만, 속성처럼 취급한다.
+      함수 인자 방식으로 사용됨. {{ 함수 }} 형식으로 호출구문을 사용해야 한다. {{ sum }} 으로 사용됨.
+
+      methods 속성은
+      함수 호출 방식으로 사용됨. {{함수( )}} 형식으로 호출구문을 사용해야 한다. {{ minus() }} 으로 사용됨.
+
+      methods 와 computed의 차이점은 캐싱 여부이다.
+      computed 는 결과 값이 캐싱되지만
+      methods 는 결과 값이 캐싱되지 않는다. methods 는 호출될 때 매번 실행된다.
+
+      1부터 입력값 까지의 합계를 구하는 예제를 풀어 본다.
+      v-model 지시자와 computed 속성이 결합된
+    </pre>
+    <hr>
+
+    <div id="app">
+        <label for="">누적 합 구하기</label>
+        <input type="text" v-model="num">
+        <br>
+        <span v-if="sum>0"> 0 부터 {{num}}까지의 합 : {{sum}}</span>
+        <br>
+        <span v-if="minus()<0"> 0 부터 {{num}}까지의 차 : {{minus()}}</span>
+    </div>
+
+</body>
+</html>
+
+
+

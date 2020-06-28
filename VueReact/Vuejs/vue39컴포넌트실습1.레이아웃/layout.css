@@ -1,0 +1,32 @@
+
+@charset "utf-8"; /* 한글,일본어,중국어등의 문자 처리를 위해서 */
+
+/* step1. 뼈대 만들기 */
+header  { height: 60px; }
+nav     { width: 30%; float:left; }
+article { width: 30%; float:left; }
+aside   { width: 30%; float:left; }
+footer  { height: 60px; clear:both; }
+
+nav , article , aside { height: 300px; }
+section { height: 50px; }
+
+/* step2. 배경색 지정*/
+header  { background-color: #78d0d1; }
+nav     { background-color: #e9e661; }
+article { background-color: #95db5e; }
+aside   { background-color: #efb14e; }
+footer  { background-color: #78d0d1; }
+
+article > section { background-color: #c885b1; }
+aside     section { background-color: #f35514; }
+
+/* step3. 여백 주기 - margin , padding */
+header  { margin: 0 0 20px 0;   }
+nav     { margin: 0 0 20px 0;   }
+article { margin: 0 5% 20px 5%; }
+aside   { margin: 0 0 20px 0;   }
+footer  {  }
+
+article > section { margin: 20px ; }
+aside   > section { margin: 20px ; }

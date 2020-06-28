@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mobile Project</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+</head>
+<body>
+
+    <div>
+        <a href="#" onClick="window.open('https://vuejstodo-aa185.firebaseapp.com/','Todo앱확인','width=800,height=700,toolbar=no,menubar=no,scrollbars=no,resizable=yes');return false;" rel="nofollow">TODO 애플리케이션 구현 확인 링크</a>
+    </div>
+
+    <xmp>
+        Vue-CLI 을 사용하여 ToDo 어플리케이션을 만들어 본다.
+
+        1. ToDo 앱 요구사항
+            1-1. CRUD 코드 구현
+            1-2. 컴포넌트 구조화 적용
+            1-3. 컴포넌트 상태 관리 적용:
+                1-3-1. 이벤트와 props 사용해서
+                1-3-2. Veux 사용해서
+
+
+        2. 프로젝트 관련 작업
+            step 1. npm install -g @vue/cli     # Vue-CLI 전역 설치
+            step 2. vue -V                      # Vue-CLI 버전 확인
+            step 3. vue create  todoprj01     # Vue 프로젝트 생성. package.json 생성. 라이브러리 다운로드
+                Vue CLI v4.4.1
+                ? Please pick a preset: Manually select features
+                ? Check the features needed for your project: Babel, Router, Vuex, Linter
+                ? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
+                ? Pick a linter / formatter config: Prettier
+                ? Pick additional lint features: Lint on save
+                ? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files
+                ? Save this as a preset for future projects? No
+
+            step 4. cd todoprj01                # 폴더 이동
+            step 5. vue add router              # Vue-Router 플러그인 추가
+            step 6. npm install vuex --save     # Veux 추가
+            step 7. package.json 수정
+                "scripts": {
+                    "serve": "vue-cli-service serve --open --port 4000", /* --open: 브라우저로 열기, --port 4000 : 포트 지정 */
+                    "build": "vue-cli-service build",
+                    "lint": "vue-cli-service lint"
+                },
+            step 8. npm run serve               # 프로젝트 실행
+            step 9. npm run lint                # 코드 표준화 검사
+            step 10. npm run build               # 웹팩 빌드. /dist/ 에 파일 만들어짐.
+
+
+        2-2. 프로젝트 폴더 구조
+           프로젝트
+            ├─ dist                     # 빌드 결과물 폴더
+            ├─ node_modules             # npm 모듈(패키지) 저장 폴더
+            ├─ public                   # 배포 버전을 빌드할 때 사용하는 파일.
+            │   └─ index.html
+            │   └─ favion.ico
+            └─ src                      # 소스 코드 폴더
+            │   └─ assets               # 기타 자원
+            │   │   └─ logo.png
+            │   ├─ components           # 컴포넌트
+            │   │   └─ todo             # 폴더 생성
+            │   │   └─ login            # 폴더 생성
+            │   ├─ router               # 라우터
+            │   ├─ views                # 라우터 페이지
+            │   ├─ App.vue
+            │   └─ main.js
+            ├─ babel.config.js
+            ├─ package.json
+            └─ README.md
+
+
+        2-3. 프로젝트 초기 설정. page 133~134
+            프로젝트의 폴더 구조
+            └─ public/index.html 에 설정
+            2-3-1. viewpoert 설정
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            2-3-2. fontawesome 설정
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
+
+            2-3-3. favicon 설정
+            <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico">
+            <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+            2-3-4. ubuntu 폰트 설정
+            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+        3. 프로젝트 1차 구현
+            3-1. 컴포넌트 생성
+                Todo        : Todo View .                        ~/src/view/Todo.vue
+                TodoHeade   : 애플리케이션 이름 표시.            ~/src/components/todo/TodoHeade.vue
+                TodoInput   : 할 일 입력 및 추가.                ~/src/components/todo/TodoInput.vue
+                TodoList    : 할 일 목록 표시 및 아이템 삭제.    ~/src/components/todo/TodoList.vue
+                TodoFooter  : 할 일 모두 삭제.                   ~/src/components/todo/TodoFooter.vue
+
+                프로젝트 폴더 구조
+                ├─ dist                     # 빌드 결과물 폴더
+                ├─ node_modules             # npm 모듈(패키지) 저장 폴더
+                ├─ public                   # 배포 버전을 빌드할 때 사용하는 파일.
+                │   └─ index.html
+                │   └─ favion.ico
+                └─ src
+                │   └─ components           # 폴더 생성
+                │       │   └─ todo             # 폴더 생성
+                │       │       └─ TodoHeade.vue
+                │       │       └─ TodoInput.vue
+                │       │       └─ TodoList.vue
+                │       │       └─ TodoFooter.vue
+                │       └─ views               # 라우터 페이지
+                │           └─ Todo.vue
+                ├─ babel.config.js
+                ├─ package.json
+                └─ README.md
+
+            3-2. 컴포넌트 구현
+
+            3-3. 상태 관리 구현
+                props 와 이벤트를 이용하여 상태 관리 구현
+
+
+        4. 프로젝트 2차 개선
+
+
+
+
+        5. 프로젝트 3차 개선
+            setp 1. componets 에 추가
+                    ~/src/components/login/user/UserLogin.vue 생성 및 수정
+                    ~/src/components/login/user/UserRegister.vue 생성 및 수정
+            setp 2. views에 추가
+                    cp ~/src/views/About.vue ~/src/views/Signup.vue
+            setp 3. ~/src/router/index.js 수정
+                import UserLogin from "@/components/user/UserLogin.vue";
+
+                {
+                    path: "/signup",
+                    name: "Signup",
+                    // route level code-splitting
+                    // this generates a separate chunk (signup.[hash].js) for this route
+                    // which is lazy-loaded when the route is visited.
+                    component: () =>
+                        import(/* webpackChunkName: "signup" */ "../views/Signup.vue")
+                },
+                {
+                    path: "/login",
+                    name: "Login",
+                    component: UserLogin
+                }
+            step 4. App.vue 에 router-link 추가
+                <div id="app">
+                    <div>
+                        <router-link to="/login">Login</router-link>
+                    </div>
+                    <div id="nav">
+                        <router-link to="/">Home</router-link> |
+                        <router-link to="/about">About</router-link> |
+                        <router-link to="/signup">Signup</router-link>
+                    </div>
+                    <router-view />
+                </div>
+
+        [참고] 페이지 129~174
+    </xmp>
+
+</body>
+</html>

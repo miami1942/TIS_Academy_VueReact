@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Sample</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS import -->
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <!-- vue 스크립트 플러그인 임포트   -->
+    
+
+</head>
+<body>
+    <pre>
+    computed 과 methods 속성의 사용법과 차이점을 이해한다.
+
+    computed 속성은 지정한 값은 함수지만, 속성처럼 취급한다.
+    함수 인자 방식으로 사용됨. {{ 함수 }} 형식으로 호출구문을 사용해야 한다. {{ sum }} 으로 사용됨.
+
+
+    methods 속성은
+    함수 호출 방식으로 사용됨. {{함수( )}} 형식으로 호출구문을 사용해야 한다. {{ minus() }} 으로 사용됨.
+
+    methods 와 computed의 차이점은
+    computed의 경우 종속된 값에 의해 결과 값이 캐싱된다는 점이다.
+    반면 메소드는 호출될 때 매번 실행한다는 점이 차이점이 있다.
+    </pre>
+    <hr>
+
+    <div class="container" id="app">
+        <h2 class="text-primary m-5">{{fmtAmount}}원</h2>
+        <input type="text" v-model="amount"> <br>
+    </div>
+
+</body>
+</html>
+

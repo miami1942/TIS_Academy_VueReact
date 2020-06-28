@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/reset.css"/>
+</head>
+
+<body>
+    <xmp>
+        <!-- react 플러그인 include   -->
+        <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+        
+        
+        
+        
+        
+        
+
+
+        // After (16.0)
+        import React, {Component} from 'react';
+        import ReactDOM from 'react-dom';
+
+        console.log(React);
+        console.log(React.Component);
+        console.log(ReactDOM);
+
+        class Comp extends React.Component {
+
+            // 컴포넌트의 변수 설정
+            state= {
+            }
+            constructor (props) {
+                super( props);
+
+                // this 바인딩
+                //this.handlerClick = this.handlerClick.bind(this);
+            }
+            componentDidMount() {
+                console.log( 'componentDidMount >> ' );
+            }
+            componentDidUpdate() {
+                console.log( 'componentDidUpdate >> ' );
+            }
+            componentWillUnmount() {
+                console.log( 'componentWillUnmount >> ' );
+            }
+            // 이벤트 핸들러는 constructor(생성자)에서 this를 bind 하시오.
+            handler = (e)=>{
+
+            }
+            render() {
+                return (
+                    <div onClick="handler">Hello, {this.props.name}</div>
+                );
+            }
+        };
+        ReactDOM.render(
+            <Comp name="hello">
+            </Comp>
+            ,
+            document.getElementById("app")
+        );
+
+
+        React
+            Dev build with warnings: react/dist/react.js
+            Minified build for production: react/dist/react.min.js
+        React with Add-Ons
+            Dev build with warnings: react/dist/react-with-addons.js
+            Minified build for production: react/dist/react-with-addons.min.js
+        React DOM (include React in the page before React DOM)
+            Dev build with warnings: react-dom/dist/react-dom.js
+            Minified build for production: react-dom/dist/react-dom.min.js
+        React DOM Server (include React in the page before React DOM Server)
+            Dev build with warnings: react-dom/dist/react-dom-server.js
+            Minified build for production: react-dom/dist/react-dom-server.min.js
+
+
+        작성  순서
+            1단계: 스크립트 플러그인 추가하기
+            2단계: 임포트 선언. 플러그인 방식에서는 필요 없음.
+                    import React from 'react';
+                    import React, {Component} from 'react';
+                    import ReactDOM from 'react-dom';
+            3단계: 컴포넌트 만들기
+            4단계: DOM에 컴포넌트 주입
+    </xmp>
+    <hr>
+
+    <div id="app">
+        ?????
+    </div>
+</body>
+
+</html>
+
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
+
+
