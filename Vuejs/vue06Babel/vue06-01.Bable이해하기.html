@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Sample</title>
 
-    
+
 </head>
+
 <body>
     <pre>
 
@@ -15,12 +17,34 @@
         Babel 이란 JS 컴파일러(=변역기)다.
             ES6 를 ES5 로 바꾸어 주는
 
+            온라인 babel 컴파일러
+            https://babeljs.io/repl
+
     </pre>
     <div id="output">
 
     </div>
 
 </body>
+
 </html>
 
 <!-- Your custom script here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+//바벨이없으면 에러가난다
+<script type="text/javascript">
+    //ES5
+</script>
+<script type="text/babel">
+    //ES6                                          ->      ES5
+    //변수선언 : let, const                     ->      var
+    //  블락 단위의 스코핑 처리             ->     함수 단위 스코팅
+    //함수선언 : function( ) { }, ( )=>{ }     ->     function( ) {  }
+
+
+    const getMessage = () => {
+        return "hello, es6!!"
+    }
+    document.getElementById("output").innerText = getMessage();
+
+</script>

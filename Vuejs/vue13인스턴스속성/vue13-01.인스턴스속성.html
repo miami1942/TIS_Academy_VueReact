@@ -39,11 +39,11 @@
 
         data 속성 주의 사항
         data 속성의 값을 직접 바꾸면 안된다.
-            인스턴스, 또는 컴포는트의 data 속성 값을 직접 바꾸면 화면 rendering 이 되지 않음
+            인스턴스, 또는 컴포넌트의 data 속성 값을 직접 바꾸면 화면 rendering 이 되지 않음
             즉, this.arr[0]=100; 과 같이 바꾸면 화면의 rendering 되지 않는 문제가 발생함.
             배열[i]="값" 형식으로 변경하면 rendering 되지 않음
 
-            해결방법
+            해결방법(값바꾸는경우)
                 (1)Vue.set(object, key, value)를 이용해서 변경한다.
                 (2)this.$set(object, key, value)
                 (3)splice()함수를 사용하여 변경

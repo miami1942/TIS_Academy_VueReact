@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,25 +14,51 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <style>
-        header  { height: 60px; }
-        section { height: 150px; }
-        footer  { height: 60px;}
+        header {
+            height: 60px;
+        }
+
+        section {
+            height: 150px;
+        }
+
+        footer {
+            height: 60px;
+        }
 
         /* step2. 배경색 지정*/
-        header  { background-color: #efb14e; }
-        section { background-color: #95db5e; }
-        footer  { background-color: #78d0d1; }
+        header {
+            background-color: #efb14e;
+        }
+
+        section {
+            background-color: #95db5e;
+        }
+
+        footer {
+            background-color: #78d0d1;
+        }
 
 
         /* step3. 여백 주기 - margin , padding */
-        header  { margin: 0 0 20px 0;   }
-        section { margin: 0 5% 20px 5%; }
+        header {
+            margin: 0 0 20px 0;
+        }
 
-        img, div, section {margin: 40px 20px;}
+        section {
+            margin: 0 5% 20px 5%;
+        }
+
+        img,
+        div,
+        section {
+            margin: 40px 20px;
+        }
     </style>
 
-	
+
 </head>
+
 <body>
     <pre>
 
@@ -53,6 +80,13 @@
         <div w3-include-footer="footer.html"></div>
     </div>
 </body>
+
 </html>
 
-
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> /* jQuery library */</script>
+<script>
+    $("div[w3-include-header='header.html']").load("header.html");//페이지가 로드된 다음에 삽입됨
+    $("div[w3-include-footer='footer.html']").load("footer.html"); //따라서 이벤트를 걸기가 애매함 
+    //그러나 vue의 웹팩을 쓰면 파일결합부터 하고 로딩되기때문에 이벤트 처리가 가능함
+</script>

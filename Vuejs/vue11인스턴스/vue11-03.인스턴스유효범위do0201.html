@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+
 
 </head>
 
@@ -51,3 +51,31 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+
+<script>
+    var data = {
+        message: "Hello, vuejs",
+    }
+    var vm1 = new Vue({
+        el: "#app",
+        data: window.data,//두개가 하나의 데이터 공유
+    });
+    var vm2 = new Vue({
+        el: "#app2",
+        data: window.data,
+    });
+    /*
+    var vm1 = new Vue({
+        el: "",
+        data:{},
+        template:"",
+        methods: { },
+        computed: {  },
+        components: {},
+        watch: {},
+        //라이프사이클 8개 자주쓰는거 2개
+    })
+    */
+</script>

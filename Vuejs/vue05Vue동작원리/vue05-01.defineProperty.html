@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+
 
 </head>
 
@@ -63,3 +63,35 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+
+<script>
+
+    var vm1 = new Vue({
+        el: "#app",
+        data: {
+            msg: "Hello",
+        }
+    });
+
+    var app2 = document.getElementById("app2");
+    var data = {};
+    Object.defineProperty(data, "msg", {//속성 get,set이 둘다 실행되는게 아니다.
+        get: function () {
+            return app2.innerHTML;//data.msg라고 적혀있으면 get이 되도록 약속, app2 안에있는 모든 태그들 다 리턴 //
+        },
+        set: function (val) {
+            debugger; //break point 설정
+            app2.innerHTML = val; //=이 있다면 set이 되도록 약속
+        }
+    });
+
+    data["msg"] = "123";
+    data.msg = "abc";
+
+    console.log(data.msg);
+
+    var app2 = document.getElementById("app2");
+
+</script>

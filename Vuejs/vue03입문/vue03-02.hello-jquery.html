@@ -6,16 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    
+
 </head>
 
 <body>
+    <div id="app">
 
-    <div>
-        <p> </p>
-        <button>click</button>
     </div>
 
 </body>
 
-</html>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> /* jQuery library */</script>
+<script>
+    $('#app').text('hello jQuery');//id app로 찾겠다 j쿼리
+
+    var app = document.getElementById('app');//자바스크립트
+    app.innerText = "hello JS";
+    $('button').click(function () {
+        alert('hi');
+    });
+</script>

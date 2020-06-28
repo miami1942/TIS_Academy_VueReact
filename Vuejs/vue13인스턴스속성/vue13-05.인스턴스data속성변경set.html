@@ -19,7 +19,7 @@
         }
     </style>
 
-    
+
 
 </head>
 
@@ -62,6 +62,7 @@
     <hr>
     <div id="app">
         <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
+        <!--v-위에오는게 지시자이다.(여기선for)-->
         <br>
         <button v-on:click="change1">방법1로 변경</button>
         <button v-on:click="change2">방법2로 변경</button>
@@ -70,4 +71,37 @@
     </div>
 </body>
 
-</html>
+</html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            arr: [1, 2, 3, 4, 5]
+        },
+        methods: {
+            change1: function (event) {
+                debugger;
+                //Vue.set(this.arr, 0, 100); //첫번쨰바꾸는법 보통 이렇게쓴다.
+                this.$data.arr[0] = 100;
+                console.log(this.$data.arr);//데이터 콘솔은 바뀌지만 화면이 안바뀐다
+                //왜냐하면 변수의 재할당이 필요하다.
+            },
+            change2: function (event) {
+                this.$set(this.$data.arr, 1, 300);//그럴떈 vue.set을 쓰면 바뀐다
+                console.log(this.$data.arr);
+            },
+            change3: function (event) {
+                this.arr.splice(0, 1, 500);//배열을 새로 만듬
+                console.log(this.$data.arr);
+            },
+            change4: function (event) {
+                var arr_copy = [...this.arr, 70];
+                this.$data.arr = arr_copy;
+                console.log(this.$data.arr);
+            },
+        },
+
+    })
+</script>

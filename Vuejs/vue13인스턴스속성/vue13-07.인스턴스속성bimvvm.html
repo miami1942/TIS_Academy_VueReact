@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+
 
 </head>
 
@@ -37,3 +37,29 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    var vm = new Vue({
+        el: "#my",
+        data: {
+            message: "aaa",
+        },
+        methods: {
+            doClick: function (e) {
+                this.$data.message = "change message when a button clicked!!";
+            }
+        },
+        mounted: function () {
+            this.$data.message = "change message at mounted!!!";
+            //Vue.set(this.$data, "message", "change message at mounted!!!");
+        },
+    })
+
+    window.setTimeout(function (params) {
+        vm.$data.message = "change message after 3 seconds!!!";
+    }, 3000);
+    window.setTimeout(function (params) {
+        vm.$data.message = "change message after 5 seconds!!!";
+    }, 5000);
+</script>
