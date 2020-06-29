@@ -31,7 +31,7 @@ node.js spa방식, 서버는 전달만 클라이언트가 계산
 was서버 : 동적인이미지(게시글)등
 
 webpack 파일결합기, 플러그인보다 우월
-spa는  es6, npm, webpack 기술이 필요
+spa는  es6, npm, webpack 기술이 필요.
 
 함수1개, 
 함수여러개모아놓은게 모듈(파일)
