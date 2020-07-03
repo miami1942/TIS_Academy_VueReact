@@ -77,7 +77,8 @@
 
     var app2 = document.getElementById("app2");
     var data = {};
-    Object.defineProperty(data, "msg", {//속성 get,set이 둘다 실행되는게 아니다.
+    Object.defineProperty(data, "msg", {//객체에 직접 새로운 속성을 정의하거나 이미 존재하는 속성을 수정한 후 그 객체를 반환
+        //속성 get,set이 둘다 실행되는게 아니다.
         get: function () {
             return app2.innerHTML;//data.msg라고 적혀있으면 get이 되도록 약속, app2 안에있는 모든 태그들 다 리턴 //
         },
@@ -91,7 +92,5 @@
     data.msg = "abc";
 
     console.log(data.msg);
-
-    var app2 = document.getElementById("app2");
 
 </script>
