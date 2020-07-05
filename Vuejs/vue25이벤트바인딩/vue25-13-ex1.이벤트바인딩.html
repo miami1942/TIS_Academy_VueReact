@@ -53,7 +53,7 @@
             <li><a class="image3" href="../images/image4.jpg" v-on:click="imageclick"> 고양이 사진 </a></li>
         </ul>
 
-        <img id="img2" />
+        <img id="img2" v-bind:src="img2" />
         <hr>
 
         <pre>
@@ -61,8 +61,9 @@
         이미지 위에 마우스를 올리면 ==> mouseover
         이미지 위에 마우스를 내리면 ==> mouseout
         </pre>
-        <img src="../images/but1.gif" id="but1" v-on:mouseover="imageover" v-on:mouseout="imageout" />
-        <img src="../images/img_swap_off.png" id="img-swap" v-on:mouseover="imageover" v-on:mouseout="imageout" />
+        <img src="../images/but1.gif" v-bind:id="but1" v-on:mouseover="imageover" v-on:mouseout="imageout" />
+        <img src="../images/img_swap_off.png" v-bind:id="img_swap" v-on:mouseover="imageover"
+            v-on:mouseout="imageout" />
         <hr>
 
         <pre>
@@ -72,9 +73,12 @@
         박스에 mouseout  이벤트를 핸들러를 작성하시오.
         </pre>
 
-        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown"  v-on:mouseup="spanmouseup" v-on:mouseout="spanmouseout"></span>
-        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown"  v-on:mouseup="spanmouseup" v-on:mouseout="spanmouseout"></span>
-        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown"  v-on:mouseup="spanmouseup" v-on:mouseout="spanmouseout"></span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout"></span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout"></span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout"></span>
         <hr>
 
         <pre>
@@ -97,5 +101,31 @@ select 에 change 이벤트 핸들러를 작성하시오.
 
 </html>
 
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            img2: "",
+            but1: "",
+            img_swap: "",
+        },
+        methods: {
+            imageclick: function (event) {
+                //debugger;
+                console.log(event.target);
+                this.$data.img2 = event.target.href;
+                //event.stopPropagation();
+                event.preventDefault();
+            },
 
-
+            imageover: function () {
+                console.log(event.target);
+                //event.target.src
+            },
+            imageout: function () {
+
+            },
+        },
+    })
+</script>

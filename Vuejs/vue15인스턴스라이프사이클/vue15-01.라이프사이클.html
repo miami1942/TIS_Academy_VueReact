@@ -20,11 +20,15 @@
         Vue 인스턴스의 라이프 사이클을 이해한다.
 
         Vue 라이프 사이클 이란?
-            vue의 인스턴스가 생성부터 소멸까지의 과정\
+            vue의 인스턴스가 생성부터 소멸까지의 과정
 
         Vue 라이프 사이클 단계
             create -> mount -> update -> destroy
             시작전    시작후
+            mounted, updated가 개입 가능하다. vue에서는 이 두개를 알아두자.
+            destroy구분은 리텍트에서 다시 신경쓴다.
+
+            vue원칙 : 값이 바뀌면 화면을 새로고침한다.
 
         Vue 라이프 사이클 단계 속성과 목적을 이해한다
         <img src="../images/vue_life_cycle.png">

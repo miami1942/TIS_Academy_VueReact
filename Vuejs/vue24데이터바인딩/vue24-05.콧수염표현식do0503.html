@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,10 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+
 
 </head>
+
 <body>
     <xmp>
         콧수염 표현식, {{ }} 에서는 
@@ -23,6 +25,7 @@
         세째, 콧수염 표현식 에서는 삼항 연산자는 사용 가능하다.
         네째, 복잡한 연산은 computed 속성에서 처리하고 화면에서는 결과만 표시하게 작성한다.
 
+        즉, 자바스크립트가 두줄 이상되면 무조건 computed로 처리하는게 좋다.
         Vue 작성 원칙은 뷰, 데이터, 로직의 분리
 
         [참조]page 101, 102
@@ -80,11 +83,12 @@
         <div>
             복잡한 연산은 인스턴스 computed 속성으로 계산 후 최종 값만 표현<br>
             message.split("").reverse().join(" ") <br>
-            computed 속성을 사용하는 방법:  <br>
+            computed 속성을 사용하는 방법: <br>
             <br>
             {{ reversedMessage }}
         </div>
     </div>
 
 </body>
+
 </html>

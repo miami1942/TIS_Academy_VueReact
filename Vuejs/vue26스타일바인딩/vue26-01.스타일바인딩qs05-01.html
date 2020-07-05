@@ -34,51 +34,90 @@
         자바스크립를 이용하여
 
         1. 학습. "버튼1" 을 클릭하면
-           getElementById()를 사용하여 배경색이 orange 인 엘리먼트를 찾아서
-           csbord 와 whsize 스타일을 추가하고 배경색을 aqua 로 설정하시오.
+        getElementById()를 사용하여 배경색이 orange 인 엘리먼트를 찾아서
+        class 속성에 csbord 와 whsize 스타일을 추가하고 배경색을 aqua 로 설정하시오.
+        style속성에 배경색 aqua를 설정한다.
 
         2. 과제. "버튼2" 을 클릭하면
-           querySelector()를 사용하여 배경색이 orange 인 엘리먼트를 찾아서
-           csbord 와 whsize 스타일을 추가하고 배경색을 yellow 로 설정하시오.
+        querySelector()를 사용하여 배경색이 orange 인 엘리먼트를 찾아서
+        csbord 와 whsize 스타일을 추가하고 배경색을 yellow 로 설정하시오.
 
         3. 학습. v-bind 지시자를 사용하여 id="app3" 엘리먼트에 class 속성을 적용하시오.
-            id="app3" 엘리먼트를 찾고 csbord 와 whsize 스타일을 추가하고  <-- 같이
-            배경색을 yellow 로 설정하시오.  <-- 각자
-    </xmp>
-    <hr>
+        id="app3" 엘리먼트를 찾고 csbord 와 whsize 스타일을 추가하고 <-- 같이 배경색을 yellow 로 설정하시오. <-- 각자 </xmp>
+            <hr>
 
-    <div class="whsize csbord">
-        csbord 와 whsize class 속성이 적용된 모습
-    </div>
-    <hr>
+            <div class="whsize csbord">
+                csbord 와 whsize class 속성이 적용된 모습
+            </div>
+            <hr>
 
-    <div>
+            <div>
 
-        <div id="app" style="background-color: orange;">
-            자바스크립를 사용하여 csbord 와 whsize class 속성 설정<br>
-        </div>
+                <div id="app" style="background-color: orange;">
+                    자바스크립를 사용하여 csbord 와 whsize class 속성 설정<br>
+                </div>
 
-        <br>
+                <br>
 
-        <button id="btn1" onclick="btn1_onclick()">버튼1</button>
-        <button id="btn2" onclick="btn2_onclick()">버튼2</button>
-    </div>
-    <hr>
+                <button id="btn1" onclick="btn1_onclick()">버튼1</button>
+                <button id="btn2" onclick="btn2_onclick()">버튼2</button>
+            </div>
+            <hr>
 
-    <div id="app3" >
-        <div style="background-color: orange;" v-bind:class="css1">
-            Vue.js의 v-bind 디렉티브(지시자)를 사용하여 csbord 와 whsize class 속성 설정<br>
-        </div>
-        <br>
-        <button v-on:click="btn6_onclick('whsize', true )">whsize class 속성 추가</button>
-        <button v-on:click="btn6_onclick('whsize', false)">whsize class 속성 제거</button>
-        <br>
-        <button v-on:click="btn6_onclick('csbord', true )">csbord class 속성 추가</button>
-        <button v-on:click="btn6_onclick('csbord', false)">csbord class 속성 추가</button>
-        <br>
-        <button v-on:click="btn5_onclick(true )">csbord 와 whsize class 속성 추가</button>
-        <button v-on:click="btn5_onclick(false)">csbord 와 whsize class 속성 제거</button>
-    </div>
+            <div id="app3">
+                <div style="background-color: orange;" v-bind:class="css1">
+                    Vue.js의 v-bind 디렉티브(지시자)를 사용하여 csbord 와 whsize class 속성 설정<br>
+                </div>
+                <br>
+                <button v-on:click="btn6_onclick">whsize class 속성 추가</button>
+                <!--이렇게 아무것도 속성값이 없는 경우 event라는 값이 자동으로넘어간다 인자가 오면인자값이넘어간다-->
+                <button v-on:click="btn6_onclick('whsize', false)">whsize class 속성 제거</button>
+                <br>
+                <button v-on:click="btn6_onclick('csbord', true )">csbord class 속성 추가</button>
+                <button v-on:click="btn6_onclick('csbord', false)">csbord class 속성 제거</button>
+                <br>
+                <button v-on:click="btn5_onclick(true )">csbord 와 whsize class 속성 추가</button>
+                <button v-on:click="btn5_onclick(false)">csbord 와 whsize class 속성 제거</button>
+            </div>
 </body>
 
 </html>
+
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    var app = document.getElementById("app");
+    //dom api에서 속성값 읽기 : getArribute()
+    //dom api에서 속성값 읽기 : setArribute()
+    //app.class = "whsize csbord"; //적용안됨
+    app.setAttribute("class", "whsize csbord");
+    app.setAttribute("style", "background-color:aqua");//vue 에서는 v-bind를 쓴다.
+
+
+    new Vue({
+        el: "#app3",
+        data: {
+            css1: {
+                whsize: true,
+                csbord: true,
+            }
+        },
+        methods: {
+            btn5_onclick: function (val) {
+                //debugger;
+                console.log(val);
+                for (var prop in this.$data.css1) {
+                    //debugger;
+                    //prop == index == property name;
+                    this.$data.css1[prop] = val;
+                }
+            },
+            btn6_onclick: function (key, val) {
+                //debugger;
+                console.log(arguments)//이벤트로 아무것도 안넘어오면 이걸 쓰면 이벤트 정보를 받아올 수 있다.
+                console.log(key, val);
+                this.$data.css1[key] = val;
+            },
+        },
+    })
+</script>

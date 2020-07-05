@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,13 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
 </head>
+
 <body>
     <xmp>
         문제.
         1. app1 의 message에 '콧수염 괄호를 이용한 데이터 출력' 가 바인딩 되게 하시오
-        2. app2 의 message에 template 속성을 사용하여 '<p>template 속성을 이용한 데이터 출력</p>' 가 바인딩 되게 하시오.
+        2. app2 의 message에 template 속성을 사용하여 '<p>template 속성을 이용한 데이터 출력. {{ message }}</p>' 가 바인딩 되게 하시오.
+        템플릿속성을 설정하면 인스턴스에 "사랑해~~~"가 사라질까? 안사라질까?
     </xmp>
     <hr>
 
@@ -24,10 +27,29 @@
             <p>{{ message }}</p>
         </div>
 
+        <!--여기서부터-->
         <div id="app2">
             사랑해~~~
         </div>
+        <!--여기까지 div 자체가 다 바뀐다-->
     </div>
 </body>
-</html>
 
+</html>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app1",
+        data: {
+            message: "콧수염 괄호를 이용한 데이터 출력",
+        },
+    });
+    new Vue({//템플릿은 기존의 태그가 사라진다.(교체된다)
+        el: "#app2",
+        data: {
+            message: "[**템플렛에 적힌 message값**]",
+        },
+        template:
+            "<p>template 속성을 이용한 데이터 출력. {{message}} template 속성을 이용한 데이터 출력.</p>"
+    })
+</script>

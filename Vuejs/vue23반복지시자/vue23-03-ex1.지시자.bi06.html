@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
 </head>
+
 <body>
     <pre>
 
@@ -30,6 +32,7 @@
             </thead>
             <tbody id="contacts">
                 <tr v-for="(contact , i ) in contacts" v-bind:key="i">
+                    <!--contact, 1에 둘다 0부터 contacts 갯수까지 오나보다-->
                     <td>{{i+1}}</td>
                     <td>{{contact.name}}</td>
                     <td>{{contact.tel}}</td>
@@ -40,5 +43,20 @@
     </div>
 
 </body>
+
 </html>
-
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contacts: [
+                { name: "이름1", tel: "전화번호1", address: "주소1" },
+                { name: "이름2", tel: "전화번호2", address: "주소2" },
+                { name: "이름3", tel: "전화번호3", address: "주소3" },
+                { name: "이름4", tel: "전화번호4", address: "주소4" },
+                { name: "이름5", tel: "전화번호5", address: "주소5" },
+            ]
+        }
+    })
+</script>

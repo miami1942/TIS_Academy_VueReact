@@ -27,40 +27,41 @@
 <body>
     <xmp>
         javascript에서 style 프로퍼티 설정 방식과 설정시의 주의 사항을 학습한다.
-          1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
-            예시) 케밥 표기법 ==> 카멜 표기법
-            font-size ==> fontSize
-            backgroundColor ==> backgroundColor
+        1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
+        예시) 케밥 표기법 ==> 카멜 표기법
+        font-size ==> fontSize
+        backgroundColor ==> backgroundColor
 
-          2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
-            {
-                background-color: yellow;
-                font-size :  12pt;
-            }
-            ==>
-            {
-                backgroundColor: "yellow",
-                fontSize :  "12pt",
-            }
+        2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
+        {
+        background-color: yellow;
+        font-size : 12pt;
+        }
+        ==>
+        {
+        backgroundColor: "yellow",
+        fontSize : "12pt",
+        }
 
         도전1. Vue.js 를 사용하여 "==>"를 클릭하면 TO-BE 박스에 아래의
-               style 속성을 적용하여 AS-IS 처럼 만드시오.
-          height: 50px;
-          width: 150px;
-          border: 1px solid black;
-          text-align: center;
-          line-height: 50px;
-          font-weight: 800;
-          color: red;
-          background-color: darkgoldenrod;
-          padding: 50px;
+        style 속성을 적용하여 AS-IS 처럼 만드시오.
+        height: 50px;
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 800;
+        color: red;
+        background-color: darkgoldenrod;
+        padding: 50px;
     </xmp>
     <style>
         #example3>* {
-            float:left;
+            float: left;
             margin: 10px 50px 10px 0px;
             line-height: 100px;
         }
+
         #example3asis {
             height: 50px;
             width: 150px;
@@ -72,7 +73,8 @@
             background-color: darkgoldenrod;
             padding: 50px;
         }
-        #example3tobe{
+
+        #example3tobe {
             border: 1px dashed blue;
             width: 150px;
         }
@@ -98,9 +100,10 @@
         https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
     </xmp>
     <style>
-        div > #eljvs, div > #elvue {
+        div>#eljvs,
+        div>#elvue {
 
-            float:left;
+            float: left;
             margin: 10px 50px 50px 0px;
             line-height: 100px;
         }
@@ -125,3 +128,13 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#example3",
+        data: {
+            style1: "";
+        }
+    })
+</script>

@@ -33,23 +33,6 @@
 </head>
 
 <body>
-    <xmp>
-        Vue.js v-for 지시자 에 대해서 학습한다.
-
-        단순 배열을 바인딩하는 방법 학습
-        array = [1,2,3,4,5];
-
-
-        Object Arrary를 바인딩하는 방법 학습.
-        Object Arrary 예시)
-        var objarray = [
-        { text: 'One', value: 'A' },
-        { text: 'Two', value: 'B' },
-        { text: 'Three', value: 'C' }
-        ];
-
-        [참조]page 104
-    </xmp>
     <hr>
 
     <h2>Arrary 바인딩</h2>
@@ -88,21 +71,25 @@
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 <script>
-    new Vue({
-        el: "#app",
-        data: {
-            systems: ["android", "ios", "window"],//in 다음에 오는것들
-            arr: [1, 2, 3, 4, 5],
-        },
+    var options = [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+    ]
+    for (index in options) {
+        //debugger;
+        var option = options[index];
+        console.log("text > " + option.text, "value > " + option["value"]);
+    }
+    for (index of options) {//of로 할 경우 var option = options[index]; 를 안써도 된다.
+        //debugger;
+        console.log("text > " + option.text, "value > " + option["value"]);
+    }
+    //map함수를 이용해서 속성(프로퍼티) 추가
+    var newopt = options.map(function (el, index) {//체인메소드
+        var obj = el;
+        obj["no"] = index;
+        return obj;
     });
-    new Vue({
-        el: "#app1",
-        data: {
-            options: [
-                { text: 'One', value: 'A' },
-                { text: 'Two', value: 'B' },
-                { text: 'Three', value: 'C' }
-            ],
-        },
-    });
+    console.log(newopt); // [{text:"", value="", no=""},{text:"", value="", no=""},{text:"", value="", no=""}] 가 만들어짐
 </script>

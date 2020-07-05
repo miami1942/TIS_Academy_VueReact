@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,14 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+
 
 </head>
+
 <body>
     <xmp>
         v-on 디렉티브와 이벤트 핸들러 설정을 연습한다.
-        1. message  ==> Hello Vue.js
+        1. message ==> Hello Vue.js
         2. secondMessage ==> with Do it! Easys Publishing
         3. id 속성값으로 "20" 설정 ==> <p id="20"></p>
         4. "alert" 버튼에 이벤트 핸들러 설정
@@ -35,7 +37,7 @@
             </h3>
         </header>
         <section>
-            <!-- #2. uid 값을 변경한 후 크롬 개발자 도구의 '요소 검사' 기능으로 아래 p 태그의 id 값 확인 -->
+            <!-- #2. uid 값을 변경한 후 크롬 개발자 도구의 '요소 검사' 기능으로 아래 p 태그의 id 값 확인(id값, :src쓰면 src도 바꿀수 있다) -->
             <p v-bind:id="uid"> id 속성 설정</p>
 
 
@@ -56,4 +58,26 @@
     </div>
 
 </body>
+
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message: "Hello Vue.js",
+            secondMessage: "with Do it! Easys Publishing",
+            uid: 20,
+            flag: true,
+        },
+        methods: {
+            clickBtn: function () {
+                console.log("hi");
+            },
+            clickBtn2: function () {
+                console.log("btn2 is clicked");
+            },
+        },
+    })
+</script>

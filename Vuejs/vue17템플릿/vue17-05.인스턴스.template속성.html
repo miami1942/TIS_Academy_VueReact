@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,28 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
 </head>
+
 <body>
     <xmp>
         Vue 인스턴스의 template 속성에 대해서서 배운다.
-            template 속성은 순수 HTML코드만을 가진다. 왜냐하면 문자열이기 때문.
-            template 속성은 1개의 root 엘리먼트만 가질 수 있다.
-            template 속성에 root 엘리먼트가 2개 이상이면 div 로 감싸서 출력한다.
+        template 속성은 순수 HTML코드만을 가진다. 왜냐하면 문자열이기 때문.
+        ☆template 속성은 1개의 root 엘리먼트만 가질 수 있다.
+        template 속성에 root 엘리먼트가 2개 이상이면 div 로 감싸서 출력한다.
+        <!--
+        <div> 감싼다
+            <p></p> 두개있을경우
+            <p></p> 두개있을경우
+        </div>  감싼다
+        -->
+        template 속성에 root 엘리먼트가 2개 이상인 경우 오류 발생
+        <h2>a</h2>
+        <h2>b</h2>
 
-            template 속성에 root 엘리먼트가 2개 이상인 경우 오류 발생
-                <h2>a</h2>
-                <h2>b</h2>
-
-            template 속성에 root 엘리먼트가 2개 이상인 경우의 해소 방법: div 로 감싸다.
-                <div>
-                    <h2>a</h2>
-                    <h2>b</h2>
-                </div>
+        template 속성에 root 엘리먼트가 2개 이상인 경우의 해소 방법: div 로 감싸다.
+        <div>
+            <h2>a</h2>
+            <h2>b</h2>
+        </div>
 
         template 속성이 설정되면 엘리먼트의 innerHTML은 template 속성 설정값으로 치환(replace)된다
 
@@ -52,4 +59,25 @@
     </div>
 
 </body>
+
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message1: "Vue 인스턴스의 template 속성을 사용하는 경우"
+        },
+        template: `
+        <div>
+        <h2>{{message1}}</h2>
+        <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
+        <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
+        </div>`,
+        methods: {},
+        components: {},
+        computed: {},
+        watch: {},
+    })
+</script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,9 @@
         .container {
             color: red;
             font-weight: bold;
-            font-size:  20pt;
+            font-size: 20pt;
         }
+
         div {
             padding-bottom: 3px;
             border-bottom: 1px dashed blue;
@@ -24,31 +26,33 @@
     </style>
 
 </head>
+
 <body>
     <xmp>
         [1] v-if 디렉티브 :
         [2] v-else 디렉티브 :
         [3] v-else-if 디렉티브 :
         [4] v-show 디렉티브 :
-            The use of the v-show directive is almost identical to that of v-if.
-            The only differences are that v-show does not support the <template> syntax
+        The use of the v-show directive is almost identical to that of v-if.
+        The only differences are that v-show does not support the <template> syntax
             렌더링 안됨
             display:none; <--> display:block; 를 사용.
 
-        [참조] 페이지 103, 104
+                [참조] 페이지 103, 104
 
-        https://kr.vuejs.org/v2/guide/conditional.html
+                https://kr.vuejs.org/v2/guide/conditional.html
 
-        https://riptutorial.com/vue-js/example/11981/v-if---v-else
+                https://riptutorial.com/vue-js/example/11981/v-if---v-else
 
     </xmp>
     <hr>
 
 
-    <h2>v-if 연습 1</h2>
+    <h2>v-if 연습 1 app1 프로퍼티인 awesome에 어떤 값을 설정하면 되는가?</h2>
     <div id="app1">
-        <h3 v-if="awesome">Vue is awesome!</h3>
-        <h3 v-else>Oh no 😢</h3>
+        <!--v-는 데이터 프로퍼티에 들어간다.-->>
+        <h3 v-if="awesome">Vue-if is awesome!</h3>
+        <h3 v-else>v-if Oh no 😢</h3>
     </div>
 
     <h2>v-else 연습 2</h2>
@@ -85,4 +89,55 @@
         </span>
     </div>
 </body>
+
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app1",
+        data: {
+            awesome: true,
+        }
+    });
+    new Vue({
+        el: "#app2",
+        data: {
+            awesome: false,
+        }
+    });
+    new Vue({
+        el: "#app3",
+        data: {//데이터가 없어도 나오는건 undefind가 false 이기 때문이다.
+            awesome: true,
+        },
+        methods: {
+            clickBind: function () {
+                if (this.$data.awesome == true) {
+                    this.$data.awesome = !this.$data.awesome; //not한다음에 넣어라
+                }
+                else {
+                    var awesome = true;
+                    this.$data.awesome = awesome;
+                }
+            }
+        },
+    });
+    new Vue({
+        el: "#app5",
+        data: {
+            type: 0,
+        },
+        methods: {
+            clickBind: function () {
+                this.$data.type++;
+                if (this.$data.type > 3) {//이거랑 아랫거랑 둘중하나 적용가능
+                    this.$data.type = 0;
+                }
+                //this.$data.type= this.$data.type % 4; //더 좋은방식이다. 컴퓨터는 %를 빠르게 처리함
+            }
+        },
+    });
+</script>
+<!--https://kr.vuejs.org/v2/guide/index.html 뷰 한글화가 잘되있다.-->
+<!--degerger가 중요.-->
