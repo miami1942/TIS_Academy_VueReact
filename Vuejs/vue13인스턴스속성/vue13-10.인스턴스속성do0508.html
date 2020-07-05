@@ -23,10 +23,6 @@
             padding: 5px 10px;
         }
     </style>
-
-    <!-- vue 스크립트 플러그인 임포트   -->
-
-
 </head>
 
 <body>
@@ -66,31 +62,34 @@
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 <script>
-    var vm1 = new Vue({
+    new Vue({
         el: "#app",
         data: {
-            methodscopy = "",
+            message: "hello, vue, vuejs",
+            methodscopy: "",
+            watchcopy: "",
+            //computedcopy: "", 컴퓨티드는 일종의 연산처리이기 떄문에 한곳만 존재 가능, computered 속성과 중복사용 불가
         },
+        template: null,
         methods: {
             reverseMsg: function (event) {
-                this.$data.methodscopy = "";
+                var aa = this.message.split("").reverse().join("");
+                //this.$set(this.$data, "message", aa);
+                this.message = aa;//이건 화면창에 다시 넣는것
+                this.$data.methodscopy = aa;
+            },
+        },
+        watch: {//항상주시
+            message: function (val) {
+                console.log("message의 값이 바뀐다.");
+                this.$data.watchcopy = val;
             }
         },
-        computed: {},
-        watch: {},
-    });
-    var vm2 = new Vue({
-        el: "",
-        data: {},
-        methods: {},
-        computed: {},
-        watch: {},
-    });
-    var vm3 = new Vue({
-        el: "",
-        data: {},
-        methods: {},
-        computed: {},
-        watch: {},
-    });
+        computed: {//값처럼 처리
+            computedcopy: function () {
+                return this.message;
+            }
+        },
+    })
+    //v-on = 메서드 나머지는 데이터
 </script>
