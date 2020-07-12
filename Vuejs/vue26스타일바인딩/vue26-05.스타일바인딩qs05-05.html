@@ -21,12 +21,12 @@
 
         single style binding:
         new Vue({
-            data : {
-                baseStyles: {
-                    fontWeight:'800',
-                    color: 'red'
-                },
-            },
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        },
         });
         <p v-bind:style="baseStyles">
             baseStyles and overrideStyles
@@ -34,17 +34,18 @@
 
         multi style binding:
         new Vue({
-            data : {
-                baseStyles: {
-                    fontWeight:'800',
-                    color: 'red'
-                },
-                overrideStyles: {
-                    color:'blue'
-                },
-            },
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        overrideStyles: {
+        color:'blue'
+        },
+        },
         });
         <p v-bind:style="[baseStyles, overrideStyles]">
+            <!--하나에서 다 쓰고 싶으면 배열로 쓴다 뷰는 인라인방식을 선호 스타일도 클래스처럼 해주고있다.-->
             baseStyles and overrideStyles
         </p>
     </xmp>
@@ -89,7 +90,10 @@
     </style>
     <div id="example3">
         <button id="btn1" v-bind:class="mystyle">버튼1</button>
+        <!--v-bind로 클래스를 잡는다 그럼 클래스에 적용이 된다.-->
         <p>
+            <!--v-model을 써놓으면 코드 적용없이 바로 mystyle.set1로 mystyle에 적용 가능하다.
+                 v-model은 키보드 마우스둘다 반영-->
             <input type="checkbox" v-model="mystyle.set1" value="true" />set1 디자인<br />
             <input type="checkbox" v-model="mystyle.set2" value="true" />set2 디자인<br />
             <input type="checkbox" v-model="mystyle.set3" value="true" />set3 디자인<br />
@@ -98,3 +102,33 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    //도전2
+    new Vue({
+        el: "#example2",
+        data: {
+            myColor: {
+                backgroundColor: "aqua",
+                color: "purple",
+            },
+            myLayout: {
+                width: "150px",
+                height: "80px",
+                textAlign: "center",
+            },
+        }
+    });
+    //도전3
+    new Vue({
+        el: "#example3",
+        data: {
+            mystyle: {
+                set1: false,
+                set2: false,
+                set3: false,
+            }
+        }
+    })
+</script>

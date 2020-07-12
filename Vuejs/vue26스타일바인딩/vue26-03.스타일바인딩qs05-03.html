@@ -120,6 +120,7 @@
         <div id="elvue">
             Vue.js 로 style 적용<br>
             <div id="c" v-bind:style="style1" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)">
+                <!--v-뒤에 오는것들은 다 변수로 만든다.-->
                 테스트
             </div>
         </div>
@@ -133,8 +134,74 @@
 <script>
     new Vue({
         el: "#example3",
-        data: {
-            style1: "";
+        data: { style1: null },
+        methods: {
+            clickArrow: function (event) {//동적으로 지정
+                this.$data.style1 = {//css -js 규칙 첫글자를 대문자로, ;을 콤마로, 쉬프트누르고 큰따옴표하면 값을 큰따옴표로 바꾸기 가능
+                    height: "50px",
+                    width: "150px",
+                    border: "1px solid black",
+                    textAlign: "center",
+                    lineHeight: "50px",
+                    fontWeight: "800",
+                    color: "red",
+                    backgroundColor: "darkgoldenrod",
+                    padding: "50px",
+                }
+            },
         }
-    })
+    });
+
+    new Vue({
+        el: "#elvue",
+        data: {
+            style1: null
+
+        },
+        methods: {
+            overEvent: function (event) {
+                this.$data.style1 = {
+                    backgroundColor: "purple",
+                    color: "yellow",
+                }
+            },
+            outEvent: function (event) {
+                this.$data.style1 = {
+                    backgroundColor: "aqua",
+                    color: "black",
+                }
+            },
+        },
+    });
+    //자바스크립트로 이벤트 핸들러 만들기
+    //"overEvent(this)" v-on:mouseout="outEvent(this)"
+    function overEvent(event) {
+        console.log("overEvent", event, event.target);
+        //적용될 엘리먼트 찾기 === 자기 자신
+        //document.getElementById() == event.target //자기 자신 찾을땐 그냥 이벤트.타겟 쓰면 된다
+        event.target.style.backgroundColor = "purple";
+        event.target.style.color = "yellow";
+
+        event.target.style = {
+            backgroundColor = "purple",
+            color = "yellow",
+        };
+
+        //object합치기
+        //1. Object.assign() 사용방식
+        //2. speed 연산자 방식
+        //3. jquery.extend() 메서드 방식
+        //4. JSON.stringfy() 방식
+
+        Object.assign(event.style, {//두개를 합쳐서 새로운걸 만듬, 기존거는 안겹치면안바뀜
+            backgroundColor = "purple",
+            color = "yellow",
+        });
+    }
+    function outEvent(event) {
+        console.log("outEvent", event, event.target);
+        event.style.backgroundColor = "aqua";
+        event.style.color = "black";
+    }
+
 </script>

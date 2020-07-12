@@ -13,13 +13,32 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <style>
-        #app{width:150px; height:150px; text-align:center;}
-        #app.ready{background:pink; color:brown;}
-        #app.active{background:green; color:tomato; border-radius:30%;}
-        #app.done{background:yellow; color:blue; border-radius:50%;}
+        #app {
+            width: 150px;
+            height: 150px;
+            text-align: center;
+        }
+
+        #app.ready {
+            background: pink;
+            color: brown;
+        }
+
+        #app.active {
+            background: green;
+            color: tomato;
+            border-radius: 30%;
+        }
+
+        #app.done {
+            background: yellow;
+            color: blue;
+            border-radius: 50%;
+        }
     </style>
 
 </head>
+
 <body>
     <pre>
 
@@ -39,5 +58,38 @@
         {{msg}}
     </div>
 </body>
+
 </html>
-
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            state: "ready",
+            msg: null,
+        },
+        methods: {
+            change: function (event) {
+                //<div id="app" class="active">
+                if (this.$data.state == "ready") {
+                    this.$data.state = "active";
+                }
+                else if (this.$data.state == "active") {
+                    this.$data.state = "done";
+                }
+                else if (this.$data.state == "done") {
+                    this.$data.state = "ready";
+                }
+                //msg를 메소드에서 바로 처리할 경우
+                //this.$data.msg = this.$data.state;
+            },
+        },
+        //msg를 computed로 처리할 경우 (추천하는 경우)
+        computed: {
+            msg: function () {
+                return this.$data.state;
+            }
+        },
+    });
+</script>

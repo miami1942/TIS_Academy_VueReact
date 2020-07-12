@@ -8,7 +8,14 @@
 
 <body>
     <input type="button" value='인라인 이벤트 모델' onclick="btn_onclick(this)" onmouseover="btn_onmouseover(this)"
-        onmouseout="btn_onmouseout(this)">
+        onmouseout="btn_onmouseout(window.event, '123','abc')" onmouseup="btn_onmouseup(this)">
+    <!--
+        태그 안에서 이벤트가 작성되는것을 인라인이벤트 핸들러라고함
+        이벤트 안에 다른인자값을 넣으면 이벤트로 넘길수 있다.
+        onmouseout="btn_onmouseout(this, '123','abc')"> //여기서 this는 window.event이다
+        this를 넣으면 이벤트 타겟만넘기고
+        window.event를 하면 전체를넘긴다.
+    -->
     <hr />
 
     <input id="btn" type="button" value='고전 이벤트 모델'>
@@ -26,3 +33,22 @@
 </body>
 
 </html>
+
+<script>
+    function btn_onclick(event) {
+        debugger;
+        console.log("btn_onclick ");
+    }
+    function btn_onmouseover(event) {
+        debugger;
+        console.log("btn_onmouseover", event);
+    }
+    function btn_onmouseout(event, v1, v2) {
+        debugger;
+        console.log("btn_onmouseout", event, v1, v2);
+    }
+    function btn_onmouseup(event, v1, v2) {
+        debugger;
+        console.log("btn_onmouseup", event, v1, v2);
+    }
+</script>
