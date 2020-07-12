@@ -1,41 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Enhancing Links</title>
     <style>
-        .icon-links a { background:0 50% no-repeat;padding-left:20px; }
-        a.presentation { background-image: url(../images/presentation.png); }
-        a.video { background-image: url(../images/video.png); }
-        a.pdf { background-image: url(../images/pdf.png);	}
-        a.image { background-image: url(../images/image.png); }
+        .icon-links a {
+            background: 0 50% no-repeat;
+            padding-left: 20px;
+        }
+
+        a.presentation {
+            background-image: url(../images/presentation.png);
+        }
+
+        a.video {
+            background-image: url(../images/video.png);
+        }
+
+        a.pdf {
+            background-image: url(../images/pdf.png);
+        }
+
+        a.image {
+            background-image: url(../images/image.png);
+        }
     </style>
 </head>
+<!--
+    1. a태그에 v-bind:class를 추가한다.
+    ->class에 해당되는 값을 data에서 어떻게 설정할 것인가?
+    2. a태그에 이벤트 핸들러 작성
+    ->이벤트 취소 기능 필요
+    ->클릭된 a태그의 href 속성값을 어떻게 얻을 수 있나?
+    ->클릭된 a태그의 href 속성값에서 파일의 확장자를 어떻게 얻을 수 있나?
+        확장자가 ppt이면 presentation클래스 적용
+        확장자가 mp4이면 video클래스 적용
+        ...
+
+-->
+
 <body>
-<div id="content">
-    <h1>Adding Icons to Links</h1>
-    <p>Here's a list of downloadable files:</p>
-    <ul class="icon-links">
-        <li><a href="presentation.ppt">Presentation slides</a></li>
-        <li><a href="video.mp4">Video of presentation</a></li>
-        <li><a href="notes.pdf">Notes for presentation</a></li>
-        <li><a href="icons.gif">GIF Icon sprite</a></li>
-        <li><a href="icons.png">PNG Icon sprite</a></li>
-        <li><a href="icons.jpg">PNG Icon sprite</a></li>
+    <div id="content">
+        <h1>Adding Icons to Links</h1>
+        <p>Here's a list of downloadable files:</p>
+        <ul class="icon-links">
+            <li><a class="my_class" href="presentation.ppt" v-on:click="myclick">Presentation slides</a></li>
+            <li><a class="my_class" href="video.mp4" v-on:click="myclick">Video of presentation</a></li>
+            <li><a class="my_class" href="notes.pdf" v-on:click="myclick">Notes for presentation</a></li>
+            <li><a v-bind:class="my_class" href="icons.gif" v-on:click="myclick">GIF Icon sprite</a></li>
+            <li><a v-bind:class="my_class" href="icons.png" v-on:click="myclick">PNG Icon sprite</a></li>
+            <li><a v-bind:class="my_class" href="icons.jpg" v-on:click="myclick">PNG Icon sprite</a></li>
 
 
-        <li><a href="fuyyu.ppt">Presentation slides</a></li>
-        <li><a href="fyyuy.mp4">Video of presentation</a></li>
-        <li><a href="uydyuflk.pdf">Notes for presentation</a></li>
-        <li><a href="OIP.gif">GIF Icon sprite</a></li>
-        <li><a href="ID7890IO.png">PNG Icon sprite</a></li>
-        <li><a href="PFDY.jpg">PNG Icon sprite</a></li>
-    </ul>
-</div>
+            <li><a v-bind:class="my_class" href="fuyyu.ppt" v-on:click="myclick">Presentation slides</a></li>
+            <li><a v-bind:class="my_class" href="fyyuy.mp4" v-on:click="myclick">Video of presentation</a></li>
+            <li><a v-bind:class="my_class" href="uydyuflk.pdf" v-on:click="myclick">Notes for presentation</a>
+            </li>
+            <li><a v-bind:class="my_class" href="OIP.gif" v-on:click="myclick">GIF Icon sprite</a></li>
+            <li><a v-bind:class="my_class" href="ID7890IO.png" v-on:click="myclick">PNG Icon sprite</a></li>
+            <li><a v-bind:class="my_class" href="PFDY.jpg" v-on:click="myclick">PNG Icon sprite</a></li>
+        </ul>
+    </div>
 </body>
+
 </html>
 
 <!-- 임포트 -->
-
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#content",
+        data: {
+            my_class: null,
+        },
+        methods: {
+            myclick: function (event) {
+                var name = event.target.href;
+                event.target.href = "#";
+                //또는 맨 아래에 event.preventDefault(); 작성
+                name = name.split('.');
+                name = name[name.length - 1];
+
+                if (name === "ppt") {
+                    debugger;
+                    console.log(event.target);
+                    event.target.className = "presentation"; //자바스크립트는 class 로 안하고 className으로 접근한다.
+                }
+                else if (name === "mp4") {
+                    console.log(event.target);
+                    event.target.className = "video";
+                }
+                else if (name === "pdf") {
+                    event.target.className = "pdf";
+                }
+                else if (name === "png" || name === "jpg" || name === "gif") {
+                    event.target.className = "image";
+                }
+            },
+        },
+
+    })
+</script>

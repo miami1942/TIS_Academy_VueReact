@@ -1,6 +1,7 @@
 <!-- ex08_crud.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +14,23 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
     <style>
-        .strong{color:red; font-weight:bold; font-size:1.2em;}
-        label { display: inline-block; width: 80px;}
-        #app > div { margin: 5px 0 ;}
+        .strong {
+            color: red;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+
+        #app>div {
+            margin: 5px 0;
+        }
     </style>
 </head>
+
 <body>
     <pre>
         CRUD 방법을 학습한다.
@@ -62,4 +75,38 @@
     </div>
 
 </body>
+
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            user: { name: null, power: 0 },
+            list: [
+                { id: "1", name: "슈퍼맨", power: 100 },
+                { id: "2", name: "아쿠아맨", power: 300 },
+                { id: "3", name: "스파이더맨", power: 500 },
+                { id: "4", name: "배트만", power: 30 },
+            ],
+        },
+        methods: {
+            insert: function () {
+                //입력값은 user에 있다.
+                console.log(this.$data.user);
+                var user = this.$data.user;
+                //user의 id property값 추가
+                user.id = this.$data.list.id + 1;
+
+                //user를 this.$data.list에 추가하시오
+                //참조타입 변수는 재할당(=깊은복사) 필요
+                //방법 1 - Vue.set()
+                //방법 2 - Array.concat()
+                //방법 3 - spreed 연산자
+
+                Vue.set(this.$data.list, this.$data.list.length, user);
+            },
+        },
+    })
+</script>

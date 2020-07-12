@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+<!-- 동적이벤트처리는 부모의 이벤트 처리로 작성하는 것이다. -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>동적 이벤트 설정</title>
+    <title>동적 이벤트 설정</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -12,24 +14,42 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
 
-	<style>
-	    p { background:yellow; font-weight:bold; cursor:pointer; padding:5px; }
-	    span { background:pink; font-weight:bold; cursor:pointer; padding:5px; display:block; margin-top:10px;}
-	    #app > div { border: 1px dashed red; }
-	</style>
+    <style>
+        p {
+            background: yellow;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        span {
+            background: pink;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        #app>div {
+            border: 1px dashed red;
+        }
+    </style>
 
 </head>
+
 <body>
     <xmp>
-		도전1.
-          동적으로 추가된 엘리먼트, p 와 span 태그에 click 이벤트를 설정하고
-          동적으로 추가된 p 와 span 엘리먼트를 click 하면
-          <p id="rhtml"> 에 click 한 태그를 출력하시오.
-		  
-		도전2.
-          p 태그를 클릭한 경우에만 <p id="rhtml"> 에 click 한 태그를 출력하도록 조건을 추가하시오. 
-          span 태그에서 클릭한 경우에는 표시하지 않는다.
-          node의 태그이름을 어떻게 알 수 있을까?
+        도전1.
+        동적으로 추가된 엘리먼트, p 와 span 태그에 click 이벤트를 설정하고
+        동적으로 추가된 p 와 span 엘리먼트를 click 하면
+        <p id="rhtml"> 에 click 한 태그를 출력하시오.
+
+            도전2.
+            p 태그를 클릭한 경우에만
+        <p id="rhtml"> 에 click 한 태그를 출력하도록 조건을 추가하시오.
+            span 태그에서 클릭한 경우에는 표시하지 않는다.
+            node의 태그이름을 어떻게 알 수 있을까?
     </xmp>
     <hr>
     <div id="app">
@@ -48,15 +68,46 @@
             추가된 span 엘리먼트에 click 이벤트 설정하려고 한다. 어떻게 하면 될까?
         </span>
         <div id="stag" v-on:click="clickDynamic">
-            <span  v-for="(sval, i) in stags" v-bind:key="i">{{sval}}</span>
+            <span v-for="(sval, i) in stags" v-bind:key="i">{{sval}}</span>
         </div>
         <hr>
 
         <p id="rhtml" v-html="rhtml" style="background-color: white; border: 1px dashed blue;">
             결과
+        <p></p>
         </p>
     </div>
 </body>
+
 </html>
 
-
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {//for문은 배열로
+            ptags: [],
+            stags: [],
+            rhtml: null,
+        },
+        methods: {
+            clickPtag: function () {
+                //참조타입변수는 재할당해야 해서 vue.set을 썼다.
+                Vue.set(this.$data.ptags, this.$data.ptags.length, this.$data.ptags.length + "p paragraph!!!")
+            },
+            clickStag: function () {
+                Vue.set(this.$data.stags, this.$data.stags.length, this.$data.stags.length + "span paragraph!!!")
+            },
+            clickDynamic: function (event) {
+                console.log(event, event.target);
+                ///클릭된 node(추가된 태그)의 태그이름을 어떻게 알 수 있을까?
+                //p태그에서 클랙한 경우에면 표시 :o
+                //span 태그에서 클릭한 경우에는 표시 :x
+                //event.target.tagName는 대문자
+                if (event.target.tagName === "p") {
+                    this.$data.rhtml = event.target.innerHTML;
+                }
+            },
+        },
+    })
+</script>
