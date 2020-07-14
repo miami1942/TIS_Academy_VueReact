@@ -39,7 +39,7 @@
     <div id="app3">
         <div>
             <input id="name" type="text" v-model:value="name" />
-            <!--value 안쓰면 생략된걸로 작성된다.즉, 속성없이 v-model만 사용 가능하다-->
+            <!--value 안쓰면 생략된걸로 작성된다.즉, 속성없이 v-model만 사용 가능하다.-->
             <span style="font-size:1.2em; font-weight:bold; border: 1px dashed blue;padding: 0 20px;">
                 Message : {{ name }}
             </span>
@@ -107,7 +107,9 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app3",
@@ -115,15 +117,23 @@
             name: null,
             message: null,
             checked: null,
-            checkedNames: [],//체크박스는 여러개를 담아야 하기 때문에 배열로 처리함
+            checkedNames: [], //체크박스는 여러개를 담아야 하기 때문에 배열로 처리함
             picked: null,
             selected: null,
-            options: [
-                { text: "one", value: "A" },
-                { text: "two", value: "B" },
-                { text: "three", value: "C" },
+            options: [{
+                    text: "one",
+                    value: "A"
+                },
+                {
+                    text: "two",
+                    value: "B"
+                },
+                {
+                    text: "three",
+                    value: "C"
+                },
             ],
         },
 
-    })//5가지의 옵션이 v모델에서 사용할 수 있는 전부이다.
+    }) //5가지의 옵션이 v모델에서 사용할 수 있는 전부이다.
 </script>
