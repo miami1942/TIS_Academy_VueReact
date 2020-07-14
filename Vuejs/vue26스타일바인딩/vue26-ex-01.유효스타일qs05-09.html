@@ -45,7 +45,10 @@
             <p>1부터 100까지만 입력가능합니다.</p>
             <div>
                 점수 : <input type="text" class="score" v-model="score" v-bind:class="info" />
-                <!--v-모델로 세팅하면 값을 자동으로 알려준다 (양방향이라서)(-->
+                <!--
+                    v-model="score"는 사용자가 적은걸 주고받음
+                    v-bind:class="info"로 클래스를 바꿔서 화면이 바뀌게 한다.
+                    v-모델로 세팅하면 값을 자동으로 알려준다 (양방향이라서)(-->
                 <img src="../images/error.png" class="warnimage" v-show="info.warning" />
             </div>
         </div>

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Sample</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Sample</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+  <!-- CSS import -->
+  <link rel="stylesheet" href="../css/reset.css">
 
 </head>
+
 <body>
-    <pre>
+  <pre>
 
       양방향 데이터 바인딩과 v-if 와 v-show의 사용법을 실습해 본다.
 
@@ -21,16 +23,16 @@
       v-if 와 v-show의 차이점을 확인한다.
     </pre>
 
-    <div id="app3">
-        예금액: <input type="text" name="money" v-model="amount">
-        <br>
-        <span id="error" v-if="amount<0">v-if: {{errMsg}}</span>
-        <br>
-        <span id="error2" v-show="amount<0">v-show: {{errMsg}}</span>
-    </div>
-    <hr>
+  <div id="app3">
+    예금액: <input type="text" name="money" v-model="amount">
+    <br>
+    <span id="error" v-if="amount<0">v-if: {{errMsg}}</span>
+    <br>
+    <span id="error2" v-show="amount<0">v-show: {{errMsg}}</span>
+  </div>
+  <hr>
 
-    <pre>
+  <pre>
 
       양방향 데이터 바인딩과  v-if, v-else-if, v-else 지시자의 사용법을 실습해 본다.
 
@@ -42,17 +44,27 @@
       100000 &lt;= 잔고 ==> 등급: Gold
     </pre>
 
-    <div id="account">
-        잔고 : <input type="text" v-model="balance" />
-        <br />
-        회원님의 등급 :
-        <span v-if="balance >=1000000">Gold</span>
-        <span v-else-if="balance >= 500000">Silver</span>
-        <span v-else-if="balance >= 200000">Bronze</span>
-        <span v-else>Basic</span>
-    </div>
-    <hr>
+  <div id="account">
+    잔고 : <input type="text" v-model="balance" />
+    <br />
+    회원님의 등급 :
+    <span v-if="balance >=1000000">Gold</span>
+    <span v-else-if="balance >= 500000">Silver</span>
+    <span v-else-if="balance >= 200000">Bronze</span>
+    <span v-else>Basic</span>
+  </div>
+  <hr>
 
 </body>
+
 </html>
-
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    el: "#account",
+    data: {
+      balance: null,//등록만 해주면 입력되는 값에 따라 자동으로 바뀐다. v-if의힘
+    },
+  })
+</script>

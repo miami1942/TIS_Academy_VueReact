@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +13,24 @@
         .container {
             color: red;
             font-weight: bold;
-            font-size:  20pt;
+            font-size: 20pt;
         }
     </style>
 
 </head>
+
 <body>
     <xmp>
 
         v-model 디렉티브에 대해서 알아본다.
 
         [1] v-model 디렉티브 :
-            양방향 데이터 바인딩이 필요한 경우에 사용.
+        양방향 데이터 바인딩이 필요한 경우에 사용.
 
-            사용 예시)
-            v-model:checked
-            v-model:value
-            v-model:selected
+        사용 예시)
+        v-model:checked
+        v-model:value
+        v-model:selected
 
         [참조]page
     </xmp>
@@ -37,6 +39,7 @@
     <div id="app3">
         <div>
             <input id="name" type="text" v-model:value="name" />
+            <!--value 안쓰면 생략된걸로 작성된다.즉, 속성없이 v-model만 사용 가능하다-->
             <span style="font-size:1.2em; font-weight:bold; border: 1px dashed blue;padding: 0 20px;">
                 Message : {{ name }}
             </span>
@@ -93,6 +96,7 @@
             <h3>options with v-for</h3>
             <select v-model="selected">
                 <option v-for="(option,i) in options" v-bind:value="option.value">
+                    <!--옵션 안에는 텍스트와 벨류가있어야함 i는 자동으로 붙는 숫자-->
                     {{i}} : {{ option.text }}
                 </option>
             </select>
@@ -100,4 +104,26 @@
         </div>
     </div>
 </body>
+
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app3",
+        data: {
+            name: null,
+            message: null,
+            checked: null,
+            checkedNames: [],//체크박스는 여러개를 담아야 하기 때문에 배열로 처리함
+            picked: null,
+            selected: null,
+            options: [
+                { text: "one", value: "A" },
+                { text: "two", value: "B" },
+                { text: "three", value: "C" },
+            ],
+        },
+
+    })//5가지의 옵션이 v모델에서 사용할 수 있는 전부이다.
+</script>

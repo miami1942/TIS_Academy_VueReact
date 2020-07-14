@@ -1,31 +1,71 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        img { padding:5px; width:130px; height:130px; border:1px solid gray; }
+        img {
+            padding: 5px;
+            width: 130px;
+            height: 130px;
+            border: 1px solid gray;
+        }
     </style>
 </head>
+
 <body>
-	<pre>
+    <pre>
 		연습 문제. 직접 작성하여 본다. 
 		html 태그에 Vue 지시지 작성을 연습하는 예제입니다.
-		Vue 지시자를 설정하시오. 
+        1. Vue 속성 지시자를 설정하시오. 
+        해당 img태그를 크릭하면 아래의 그림이 나오게 한다
+        img1 => images/im1.jpg 
+        ... 
+        
+        2. 이벤트 핸들러 작성
+        img태그를 클릭하면 이벤트 핸들러 작성도 필요
 	</pre>
     <h2>&lt;img id="" src="" title="" alt="" /&gt;</h2>
+    <div id="app">
+        <h3>어트리뷰트 추가</h3>
+        <img id="1" v-bind:src="img.null" title="im1.jpg" alt="im1.jpg" v-on:click="mylcick" />
+        <img id="2" v-bind:src="img.null" title="im2.jpg" alt="im2.jpg" v-on:click="mylcick" />
+        <img id="3" v-bind:src="img.null" title="im3.jpg" alt="im3.jpg" v-on:click="mylcick" />
+        <img id="4" v-bind:src="img.null" title="im4.jpg" alt="im4.jpg" v-on:click="mylcick" />
+        <img id="5" v-bind:src="img.null" title="im5.jpg" alt="im5.jpg" v-on:click="mylcick" />
 
-    <h3>어트리뷰트 추가</h3>
-    <img id="img1" src="../images/im1.jpg" title="im1.jpg" alt="im1.jpg" />
-    <img id="img2" />
-    <img id="img3" />
-    <img id="img4" />
-    <img id="img5" title="im5.jpg" />
-
-    <h3>어트리뷰트 제거</h3>
-    <img id="img6" src="../images/im5.jpg" title="im5" alt="im5.jpg" />
+        <h3>어트리뷰트 제거</h3>
+        <img id="6" v-bind:src="img.im5" title="im5" alt="im5.jpg" />
+    </div>
 </body>
+
 </html>
 
-<!-- 임포트 -->
+<!-- 임포트 -->
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {//만약 키를 넣을경우 키부분은 문자열""로 만든다
+            img: null,
+        },
+        methods: {
+            mylcick: function (event) {//event로 받아온것들중 target을 보면 id값등 많이 있다. 거기서받아오자
+                console.log(event);//target은 태그값 자체이다.  
+                var id = event.target.id;
+                if (this.$data.img === null) {
+                    event.target.src = "../images/im" + id + ".jpg";
+                    event.target.src = this.$data.img[id];
+                }
+                if (id === "img") {
+                    event.target.src = this.$data.img.null;
+                }
+                else
+                    event.
+            }
+        },
+    })
+</script>

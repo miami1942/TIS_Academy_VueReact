@@ -94,9 +94,10 @@
         <p>
             <!--v-model을 써놓으면 코드 적용없이 바로 mystyle.set1로 mystyle에 적용 가능하다.
                  v-model은 키보드 마우스둘다 반영-->
-            <input type="checkbox" v-model="mystyle.set1" value="true" />set1 디자인<br />
-            <input type="checkbox" v-model="mystyle.set2" value="true" />set2 디자인<br />
-            <input type="checkbox" v-model="mystyle.set3" value="true" />set3 디자인<br />
+            <input type="checkbox" v-model="mystyle.set1" />set1 디자인<br />
+            <!--v-model은 자동으로 checked옵션을 가져서 자동으로 체크박스랑 연동해준다-->
+            <input type="checkbox" v-model:checked="mystyle.set2" />set2 디자인<br />
+            <input type="checkbox" v-model:checked="mystyle.set3" />set3 디자인<br />
         </P>
     </div>
 </body>
