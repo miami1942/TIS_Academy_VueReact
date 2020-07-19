@@ -10,11 +10,13 @@
         body {
             background-color: lightgrey;
         }
-        body > * {
+
+        body>* {
             text-align: center;
             vertical-align: middle;
             line-height: 2em;
         }
+
         p {
             top: 50%;
             text-align: center;
@@ -23,7 +25,7 @@
 
         header {
             background-color: orange;
-            margin: 10px 0 ;
+            margin: 10px 0;
             width: 100%;
             height: 60px;
         }
@@ -31,23 +33,25 @@
         /* <div id="content-list"> */
         #content {
             background-color: white;
-            margin: 0 0 30px 0 ;
+            margin: 0 0 30px 0;
         }
 
         aside {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             height: 200px;
             float: left;
         }
+
         #content-list {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             float: right;
             height: 200px;
         }
+
         #content::after {
             clear: both;
             display: block;
@@ -55,7 +59,7 @@
         }
 
         footer {
-            margin: 10px 0 ;
+            margin: 10px 0;
             background-color: lightblue;
             width: 100%;
             height: 50px;
@@ -65,21 +69,88 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <div id="content">
-        <p>Content</p>
-        <aside>
-            Aside
-        </aside>
-        <div id="content-list">
-            List
-        </div>
+    <div id="app">
+        <!--body자체는 컴퍼넌트가 안먹히므로 따로만든다-->
+        <component-header></component-header>
+        <component-content></component-content>
+        <component-footer></component-footer>
     </div>
-    <footer>
-        Footer
-    </footer>
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    //vue인스턴스를 만들 태그를 추가한다
+    //한개의 인스턴스와 5개의 컴포넌트를 만든다.
+    //시맨틱태그를 기준으로 컴포넌트를 작성하면 쉽게할수있다.
+    Vue.component("component-header", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: [],
+        data: function () {
+            return {};
+        }
+        ,
+        template: `
+        <header>
+            Header
+        </header>
+        `,
+    });
+    Vue.component("component-aside", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: [],
+        data: function () {
+            return {};
+        }
+        ,
+        template: `
+        <aside>
+                Aside
+            </aside>
+        `,
+    });
+    Vue.component("component-list", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: [],
+        data: function () {
+            return {};
+        }
+        ,
+        template: `
+        <div id="content-list">
+                List
+            </div>
+        `,
+    });
+    Vue.component("component-content", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: [],
+        data: function () {
+            return {};
+        }
+        ,
+        template: `
+        <div id="content">
+            <p>Content</p>
+            <component-aside></component-aside>
+            <component-list></component-list>
+        </div>
+        `,
+    });
+    Vue.component("component-footer", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: [],
+        data: function () {
+            return {};
+        }
+        ,
+        template: `
+        <footer>
+            Footer
+        </footer>
+        `,
+    })
+    //인스턴스 만들기
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+    })
+</script>

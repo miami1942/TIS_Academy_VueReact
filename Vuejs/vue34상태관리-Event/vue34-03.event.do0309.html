@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
 </head>
+
 <body>
     <pre>
 
@@ -29,13 +31,42 @@
       [참조]page 62~75
     </pre>
 
-      <img src="../images/components_parent_child.png" alt="" srcset="">
+    <img src="../images/components_parent_child.png" alt="" srcset="">
     <hr>
     <div id="app">
         <child-component v-on:show-log="printText"></child-component>
+        <!--show-log는 이벤트명, 자식이벤트->부모이벤트이므로 왼쪽에서 오른쪽으로 사건이 진행됨
+        3정의된거 실행-->
     </div>
 
 </body>
+
 </html>
 
-
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    Vue.component("child-component", {
+        props: [],
+        data: function () { return {} },
+        template: `
+            <div>
+            <button v-on:click="showLog">show</button>
+            </div>
+        `,//2클릭 실행
+        methods: {
+            showLog: function (event) {
+                //자식에게서 이벤트 발생
+                this.$emit("show-log", "인자1", "인자2");//emit함수의 속성은 이름, 인자,인자,인자,...
+            }
+        },
+    })
+    new Vue({
+        el: "#app",
+        methods: {
+            printText: function (par1, par2) {//1정의됨
+                debugger;
+                console.log(par1, par2);
+            }
+        },
+    })
+</script>

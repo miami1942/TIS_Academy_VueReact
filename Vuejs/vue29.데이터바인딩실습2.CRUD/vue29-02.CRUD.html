@@ -65,10 +65,10 @@
                 <td>{{man.name}}</td>
                 <td>{{man.power}}</td>
                 <td>
-                    <button v-on:click="doDel(index)">Del</button>
-                    <button v-on:click="doUp(index)">Power Up</button>
-                    <button v-on:click="doDown(index)">Power Down</button>
-                    <button v-on:click="doEdit(index)">Edit</button>
+                    <button v-on:click="doDel(man.id, index)">Del</button>
+                    <button v-on:click="doUp(man.id, index)">Power Up</button>
+                    <button v-on:click="doDown(man.id, index)">Power Down</button>
+                    <button v-on:click="doEdit(man.id, index)">Edit</button>
                 </td>
             </tr>
         </table>
@@ -83,7 +83,9 @@
     new Vue({
         el: "#app",
         data: {
-            user: { name: null, power: 0 },
+            user: {
+                id: null, name: null, power: 0
+            },
             list: [
                 { id: "1", name: "슈퍼맨", power: 100 },
                 { id: "2", name: "아쿠아맨", power: 300 },
@@ -99,6 +101,25 @@
                 //user의 id property값 추가
                 user.id = this.$data.list.id + 1;
 
+                //user에 id프로퍼티 추가
+                //max(id)를 찾는 방법=> reduce()메서드 사용
+                //reduce()메서드 사용하여 max 찾기 방법
+                //prev = {id:2, name:"", power:200},
+                //next = {id:1, name:"", power:300}
+                /*
+                var obj = array.reduce(function (prev, next) {
+                    return prev.id > next.id ? prev : next;//최대값id가 있는 객체
+                    return prev.id < next.id ? prev : next;
+                })
+                */
+                var maxObj = this.$data.list.reduce(function (prev, next) {
+                    return prev.id > next.id ? prev : next;
+                });
+                console.log("maxObj", maxObj);
+
+
+                user.id = maxObj.id + 1
+
                 //user를 this.$data.list에 추가하시오
                 //참조타입 변수는 재할당(=깊은복사) 필요
                 //방법 1 - Vue.set()
@@ -107,6 +128,49 @@
 
                 Vue.set(this.$data.list, this.$data.list.length, user);
             },
+            doUp: function (userid, index) {//user.id가 값으로 넘어오고있다
+                console.log("userid", userid);
+                var users = this.$data.list.filter(function (el) {
+                    return el.id == this ? el : null;//this==userid 문자열과 숫자의 비교이기 때문에 ===는 안된다.
+                }, userid);
+                console.log(users);//user==배열, user=객체
+                var user = users[0];
+                user.power = Number(user.power) + 100;
+                //user를 this.$data.list에 수정하시오
+                //참조타입 변수는 재할당(=깊은복사) 필요
+                //방법 1 - Vue.set()
+                //방법 2 - Array.concat()
+                //방법 3 - spreed 연산자
+                Vue.set(this.$data.list, index, user);
+            },
+            doDown: function (userid, index) {
+                //console.log("userid", userid);
+                var users = this.$data.list.filter(function (el) {
+                    //console.log("el", el);
+                    return el.id == this ? el : null;
+                }, userid);
+                console.log(users);
+                var user = users[0];
+                user.power = Number(user.power) - 50;
+                Vue.set(this.$data.list, index, user);
+            },
+            doEdit: function (userid, index) {
+                console.log("userid", userid)
+                this.$data.user = this.$data.list[index];//this.$data.user 에는 id프로퍼티가 없다.
+            },
+            doDel: function (userid, index) {
+                console.log("userid", userid);
+                //user를 this.$data.list에 삭제하시오
+                //참조 타입 변수이면 재할당(==깊은복사)필요
+                //array.splice()사용
+                this.$data.list.splice(index, 1)//this.$data.list의 index 부터 한개를 삭제 (배열을 새로 만듬)
+            },
         },
     })
+
+    //자바스크립트에서 많이 쓰이는 함수 4가지
+    //map
+    //reduce
+    //filter
+    //sort
 </script>

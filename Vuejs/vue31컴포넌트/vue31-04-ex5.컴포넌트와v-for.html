@@ -49,6 +49,7 @@
         <p>
             <b v-for="(val, i) in arr" v-bind:key="i">
                 <component-box v-bind:num="val"></component-box>
+                <!--=을 기준으로 왼쪽은 자식 오른쪽은 부모, data에서 일로한번 거쳐서 다시 num에 들어가는게 물려주는거다-->
             </b>
         </p>
     </div>
@@ -59,3 +60,39 @@
 </html>
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    //컴포넌트 만들기 np dt mc^2 w
+    Vue.component("component-box", {//컴포넌트가 앞에잇어야 인스턴스가 이해 가능
+        props: ["num"],
+        data: function () {
+            return {
+                style1: {
+                    display: "inline-block",
+                    fontSize: "3em",
+                    border: "1px dashed blue",
+                    padding: "10px 20px",
+                    margin: "5px",
+                    textAlign: "center",
+                }
+            };
+        },
+        template: `
+            <span v-bind:style="style1">
+                {{num}}
+            </span>
+        `,
+    })
+    //인스턴스 만들기
+
+    new Vue({
+        el: "#app",
+        data: {
+            arr: [0, 1, 2, 3, 4, 5],
+        },
+        methods: {
+            clickAddBox: funtion(event){
+
+        Vue.set(this.$data.arr, this.$data.arr.length);
+    }
+    })
+</script>
