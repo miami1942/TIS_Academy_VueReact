@@ -11,7 +11,7 @@
 
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
-	
+
 </head>
 
 <body>
@@ -38,10 +38,10 @@
        이러한 문제점이 발생 하는 경우 Vuex를 사용하면 쉽게 해결 할 수 있습니다.
 
       1.4 Vuex 구성 5 요소
-       . view : 컴포넌트 나 인스턴스가 된다.
+       . view(=component) : 컴포넌트 나 인스턴스가 된다.
        . actions : 사용자의 입력에 따라 반응할 methods.
                    비동기적 로직을 수행
-                   this.$store.dispatch("action명", payload) 을 사용하여 호출
+                   this.$store.dispatch("action명", payload) 을 사용하여 호출 dispatch는 메소드
        . mutations: 동기적 로직을 수행
                    this.$store.commit("action명", payload) 을 사용하여 호출
        . state : 컴포넌트 간에 공유할 data
@@ -51,9 +51,72 @@
     <div id="app">
         <h1>{{header}}</h1>
         <h2>{{welcome}}</h2>
+        <!--computed로-->
         <h3>{{counter}}</h3>
         <button v-on:click="increment">나를 눌러줘</button>
     </div>
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+
+<script>
+    var store = new Vuex.Store({
+        actions: {
+            //비동기처리 메서드의인자는 모두 동일하게 만들어야 한다.
+            increment: function (mutations, playload) {
+                window.setTimeout(function () {
+                    mutations.commit("increment", playload);
+                }, 1000);//1000ms지연
+            },
+            decrement: function (mutations, playload) {
+
+            },
+        },
+        mutations: {
+            //동기처리 첫번쨰 인자는 무조건 state
+            increment: function (state, playload) {//아래 물건바구니 담기 state그놈이다.
+                state.counter = state.counter + playload;//playload는 값이다.
+            },
+            decrement: function (state, playload) {
+            },
+        },
+        state: {//물건바구니담기
+            //vue 인스턴스의 data 프로퍼티
+            counter: 0,
+            welcome: "hello, vue",
+        },
+        getters: {//출구로 나오기
+            //state를 컴포넌트에 연결
+            welcome: function () {
+                return state.welcome;
+            },
+            counter: function () {
+                return state.counter;
+            }
+        }
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            header: null,
+        },
+        methods: {
+            increment: function (event) {
+                //버튼 누르면 스토어의 액션 호출
+                //dispatch("액션명, 호출값")
+                store.dispatch("increment", 10) //버스타고가는것
+            }
+        },
+        computed: {
+            welcome: function () {
+                return store.getters.welcome;//바뀌면 바로바로가져옴
+            },
+            counter: function () {
+                return store.getters.counter;
+            }
+        },
+    })
+</script>

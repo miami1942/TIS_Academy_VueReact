@@ -13,19 +13,19 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <style>
+        .component-parent {
+            width: 50%;
+            background-color: lightblue;
+            padding: 5%;
+        }
 
-    .component-parent {
-        width: 50%;
-        background-color: lightblue;
-        padding:5%;
-    }
-    .component-child {
-        width: 80%;
-        background-color: lightgray;
-        padding: 5% 5% 10% 0;
-    }
+        .component-child {
+            width: 80%;
+            background-color: lightgray;
+            padding: 5% 5% 10% 0;
+        }
     </style>
-	
+
 </head>
 
 <body>
@@ -34,26 +34,105 @@
         예제 "34-ex-01-counter.html" 를 Vuex를 사용하는 방법으로 바꾸어 본다.
 
         이 앱의 특징은 다음과 같습니다.
-          + 버튼을 클릭하면 카운터가 올라가고
-          - 버튼을 클릭하면 카운터가 감소됩니다.
+        + 버튼을 클릭하면 카운터가 올라가고
+        - 버튼을 클릭하면 카운터가 감소됩니다.
 
         child-componet 템플릿 태그는 아래와 같이 설정하시오.
-          <div>
-              <button v-on:click="addCount">Add Count</button>
-              <button v-on:click="clearCount">Clear Count</button>
-          </div>
+        <div class="component-child">
+            Child counter : {{num}}<br>
+            <button v-on:click="addCounter">+</button>
+            <button v-on:click="subCounter">-</button>
+        </div>
     </xmp>
     <hr>
 
     <div id="app" class="component-parent">
         Parent counter : {{ counter }} <br>
-        <button v-on:click="addCounter">+</button>
-        <button v-on:click="subCounter">-</button>
+        <button v-on:click="addCounter(this.event, 1)">+</button>
+        <!--this는 윈도우-->
+        <button v-on:click="subCounter(this.event, -1)">-</button>
         <p></p>
 
         <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-        <component-child></component-child>
+        <component-child>
+        </component-child>
     </div>
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script>
+    var store = new Vuex.Store({
+        actions: {
+            increment: function (mutations, value) {
+                //밑에있는놈이 무조건 첫번쨰인자
+                //액션에서는 commit()호출
+                mutations.commit("increment", value);
+            },
+            decrement: function (mutations, value) {
+                mutations.commit("decrement", value);
+            },
+        },
+        mutations: {
+            increment: function (state, value) {
+                state.counter = state.counter + value;
+            },
+            decrement: function (state, value) {
+                state.counter = state.counter + value;
+            },
+        },
+        state: {
+            counter: 0
+        },
+        getters: {//counter리턴
+            counter: function (state) {
+                return state.counter;
+            }
+        }
+    });
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Vue.component("component-child", {
+        data: function () { return {} },
+        template: `
+                <div class="component-child">
+                    Child counter : {{num}}<br>
+                    <button v-on:click="addCounter(this.event, 1)">+</button>
+                    <button v-on:click="subCounter(this.event, -1)">-</button>
+                </div>
+                `,
+        methods: {
+            addCounter: function (event) {
+
+                store.dispatch("increment", +10);//"add-counter" 첫번쨰인자, +1이 두번쨰인자
+            },
+            subCounter: function (event) {
+                store.dispatch("decrement", -10);
+            },
+        },
+        computed: {
+            num: function () {
+                return store.getters.counter;
+            }
+        },
+    });
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    new Vue({
+        el: "#app",
+        methods: {
+            addCounter: function (event, param) {
+
+                store.dispatch("increment", param);//"add-counter" 첫번쨰인자, +1이 두번쨰인자
+            },
+            subCounter: function (event, param) {
+                store.dispatch("decrement", param);
+            },
+        },
+        computed: {
+            counter: function () {
+                return store.getters.counter;
+            }
+        },
+    })
+</script>

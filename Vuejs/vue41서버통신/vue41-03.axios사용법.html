@@ -39,7 +39,7 @@
         <div>
             <a href="#" id="menu1" v-on:click="clickMenu1">메뉴 보기 1</a>
             <span id="message1" v-html="message1" v-on:click="clickAlert">
-                <!--
+                <!--완성시키고픈 장면
                     <p> 중 식 메 뉴 </p>
                     <ul>
                     <li> 짜장면 </li>
@@ -68,4 +68,61 @@
     </div>
 </body>
 
-</html>
+</html>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios : vue 비동기 처리 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> /* jQuery library */</script>
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            message1: null,
+            message2: null
+        },
+        methods: {
+            clickMenu1: function (event) {
+                axios({
+                    url: 'http://localhost:5050/html',      // 호출되는 서버 주소.
+                    method: "get",         // request method: get, post, delete, put
+                    params: null,            // 서버로 보내는 데이터. { data1:"test1", data2:"test2" }
+                    timeout: 30000,        // 최대 대기 시간: 30초. 30초 이상이 되면 fail 부분이 실행됨.
+                    responseType: "html",  // response로 데이터 형태: text, html, xml, json, jsonp, script
+
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        this.$data.message1 = res.data;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            },
+            clickMenu2: function (event) {
+                axios({
+                    url: 'http://localhost:5050/html',      // 호출되는 서버 주소.
+                    method: "get",         // request method: get, post, delete, put
+                    params: null,            // 서버로 보내는 데이터. { data1:"test1", data2:"test2" }
+                    timeout: 30000,        // 최대 대기 시간: 30초. 30초 이상이 되면 fail 부분이 실행됨.
+                    responseType: "html",  // response로 데이터 형태: text, html, xml, json, jsonp, script
+
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        //jquery로 필터링한다
+                        var $ul = $(res.data).filter("ul");
+                        this.$data.message2 = $($ul).html();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+            },
+
+            clickAlert: function (event) {
+
+            }
+
+        }
+    });
+</script>

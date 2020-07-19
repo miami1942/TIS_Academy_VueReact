@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,29 +13,30 @@
     <link rel="stylesheet" href="../css/reset.css">
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
+
+
 
 </head>
+
 <body>
     <xmp>
         Vue의 라우팅을 이해하자.
-            1. 서버 라우팅
-            2. 클라이언트 라우팅. SPA
+        1. 서버 라우팅
+        2. 클라이언트 라우팅. SPA
 
         vue-router 는?
-            vue-router is the officially supported routing library for vue.js.
+        vue-router is the officially supported routing library for vue.js.
 
         router 구문
-            router-link    ==> Creates a link to the route that matches the path
-            <router-link to="/path">Link Text</router-link>
-            router-view    ==> Outlet for the currently matched route. It's component will be rendered here.
-            <router-view></router-view>
+        router-link ==> Creates a link to the route that matches the path
+        <router-link to="/path">Link Text</router-link>
+        router-view ==> Outlet for the currently matched route. It's component will be rendered here.
+        <router-view></router-view>
 
         router 종류
-            Nested Router
-            NamedView Router
-            Dynamic Router
+        Nested Router
+        NamedView Router
+        Dynamic Router
 
         [참조]page 78~86
     </xmp>
@@ -49,4 +51,41 @@
     </div>
 
 </body>
+
 </html>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script>
+    //컴포넌트만들기 /main=> component-main
+    //컴포넌트만들기 /login => component-login
+    //뷰 라우팅 정의
+    //인스턴스만들기
+    Vue.component("component-main", {
+        props: [],
+        data: function () { return {} },
+        template: `
+        <div>
+            main
+        </div>
+        `,
+    });
+    Vue.component("component-login", {
+        props: [],
+        data: function () { return {} },
+        template: `
+        <div>
+            login
+        </div>
+        `,
+    });
+    var router = new VueRouter({
+        routes: [
+            { path: "/main", component: Vue.component("component-main") },
+            { path: "/login", component: Vue.component("component-login") },
+        ]
+    });
+    new Vue({
+        router
+    }).$mount("#app");
+    //위의 링크가 바뀐다 (화면은그대로)
+</script>
