@@ -55,12 +55,12 @@
     <h2>Arrary 바인딩</h2>
     <div id="app">
         <p>
-        <ul>
-            <!-- javascript for( var system in  systems); 문과 같다 -->
-            <li v-for="system in systems">
-                {{ system }}
-            </li>
-        </ul>
+            <ul>
+                <!-- javascript for( var my_i in  systems); 문과 같다 -->
+                <li v-for="my_i in systems">
+                    {{ my_i }}
+                </li>
+            </ul>
         </p>
         <p>
             <span v-for="(val, i) in arr" v-bind:key="i">{{val}}</span>
@@ -73,10 +73,10 @@
         <div>
             <h2>Object Arrary rendered with v-for:</h2>
             <select name="" id="">
-                <option v-for="option in options" v-bind::key="option.value">
-                    <!--v-for는 반듯이 v-bind 키를 설정해야하며 키값은 중복되면 안된다.-->
+                <option v-for="inde in options" v-bind::key="inde.value">
+                    <!--v-for는 반드시 v-bind 키를 설정해야하며 키값은 중복되면 안된다.-->
                     <!--키값은 중복x여야한다-->
-                    {{ option.text }} : {{ option.value}}
+                    {{ inde.text }} : {{ inde.value}}
                 </option>
             </select>
         </div>
@@ -86,22 +86,32 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app",
         data: {
-            systems: ["android", "ios", "window"],//in 다음에 오는것들
+            systems: ["android", "ios", "window"], //in 다음에 오는것들
             arr: [1, 2, 3, 4, 5],
         },
     });
     new Vue({
         el: "#app1",
         data: {
-            options: [
-                { text: 'One', value: 'A' },
-                { text: 'Two', value: 'B' },
-                { text: 'Three', value: 'C' }
+            options: [{
+                    text: 'One',
+                    value: 'A'
+                },
+                {
+                    text: 'Two',
+                    value: 'B'
+                },
+                {
+                    text: 'Three',
+                    value: 'C'
+                }
             ],
         },
     });

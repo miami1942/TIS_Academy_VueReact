@@ -73,7 +73,9 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app",
@@ -85,15 +87,15 @@
                 debugger;
                 //Vue.set(this.arr, 0, 100); //첫번쨰바꾸는법 보통 이렇게쓴다.
                 this.$data.arr[0] = 100;
-                console.log(this.$data.arr);//데이터 콘솔은 바뀌지만 화면이 안바뀐다
+                console.log(this.$data.arr); //데이터 콘솔은 바뀌지만 화면이 안바뀐다
                 //왜냐하면 변수의 재할당이 필요하다.
             },
             change2: function (event) {
-                this.$set(this.$data.arr, 1, 300);//그럴떈 vue.set을 쓰면 바뀐다
+                this.$set(this.$data.arr, 1, 300); //그럴떈 vue.set을 쓰면 바뀐다
                 console.log(this.$data.arr);
             },
             change3: function (event) {
-                this.arr.splice(0, 1, 500);//배열을 새로 만듬
+                this.arr.splice(0, 1, 500); //배열을 새로 만듬
                 console.log(this.$data.arr);
             },
             change4: function (event) {

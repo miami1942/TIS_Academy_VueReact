@@ -60,7 +60,9 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app",
@@ -73,19 +75,19 @@
         template: null,
         methods: {
             reverseMsg: function (event) {
-                var aa = this.message.split("").reverse().join("");
-                //this.$set(this.$data, "message", aa);
-                this.message = aa;//이건 화면창에 다시 넣는것
-                this.$data.methodscopy = aa;
+                var revers = this.message.split("").reverse().join("");
+                //this.$set(this.$data, "message", revers);
+                this.message = revers; //이건 화면창에 다시 넣는것
+                this.$data.methodscopy = revers;
             },
         },
-        watch: {//항상주시
+        watch: { //항상주시
             message: function (val) {
                 console.log("message의 값이 바뀐다.");
                 this.$data.watchcopy = val;
             }
         },
-        computed: {//값처럼 처리
+        computed: { //값처럼 처리
             computedcopy: function () {
                 return this.message;
             }

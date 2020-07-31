@@ -36,20 +36,21 @@
 </body>
 
 </html>
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app1",
         data: {
-            message: "콧수염 괄호를 이용한 데이터 출력",
+            message: "app1 = 콧수염 괄호를 이용한 데이터 출력",
         },
     });
-    new Vue({//템플릿은 기존의 태그가 사라진다.(교체된다)
+    new Vue({ //템플릿은 기존의 태그가 사라진다.(교체된다)
         el: "#app2",
         data: {
             message: "[**템플렛에 적힌 message값**]",
         },
-        template:
-            "<p>template 속성을 이용한 데이터 출력. {{message}} template 속성을 이용한 데이터 출력.</p>"
+        template: "<p>app2 = template 속성을 이용한 데이터 출력. {{message}} template 속성을 이용한 데이터 출력.</p>"
     })
 </script>

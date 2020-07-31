@@ -38,12 +38,12 @@
     <h2>Arrary 바인딩</h2>
     <div id="app">
         <p>
-        <ul>
-            <!-- javascript for( var system in  systems); 문과 같다 -->
-            <li v-for="system in systems">
-                {{ system }}
-            </li>
-        </ul>
+            <ul>
+                <!-- javascript for( var system in  systems); 문과 같다 -->
+                <li v-for="system in systems">
+                    {{ system }}
+                </li>
+            </ul>
         </p>
         <p>
             <span v-for="(val, i) in arr" v-bind:key="i">{{val}}</span>
@@ -69,24 +69,34 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
-    var options = [
-        { text: 'One', value: 'A' },
-        { text: 'Two', value: 'B' },
-        { text: 'Three', value: 'C' }
+    var options = [{
+            text: 'One',
+            value: 'A'
+        },
+        {
+            text: 'Two',
+            value: 'B'
+        },
+        {
+            text: 'Three',
+            value: 'C'
+        }
     ]
     for (index in options) {
         //debugger;
         var option = options[index];
         console.log("text > " + option.text, "value > " + option["value"]);
     }
-    for (index of options) {//of로 할 경우 var option = options[index]; 를 안써도 된다.
+    for (index of options) { //of로 할 경우 var option = options[index]; 를 안써도 된다.
         //debugger;
         console.log("text > " + option.text, "value > " + option["value"]);
     }
     //map함수를 이용해서 속성(프로퍼티) 추가
-    var newopt = options.map(function (el, index) {//체인메소드
+    var newopt = options.map(function (el, index) { //체인메소드
         var obj = el;
         obj["no"] = index;
         return obj;

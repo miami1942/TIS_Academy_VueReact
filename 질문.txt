@@ -1,0 +1,4 @@
+13-5
+var arr_copy = [...this.arr, 70];
+에서 ... 뜻
+

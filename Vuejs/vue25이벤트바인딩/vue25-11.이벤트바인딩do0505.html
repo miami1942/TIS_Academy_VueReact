@@ -31,36 +31,31 @@
         <div>{{num}}</div>
         <button v-on:click="clickBtn(10)">클릭</button>
         <!--무조건 10을 인자로 받음-->
-        <== 실습 </div>
-
-</body>
-
-</html>
-
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
-<script>
-    new Vue({
-        el: "#app1",
-        data: {
-            num: 0,
-        },
-        methods: {
-            clickBtn: function (e1) {
-                this.$data.num = this.$data.num + 1;
-                //this.$set(this.$data, "num", this.$data++);
-            },
-        }
-    });
-    new Vue({
-        el: "#app2",
-        data: {
-            num: 0,
-        },
-        methods: {
-            clickBtn: function (e2) { //clickBtn(10)로 인해 e2에 10씩들어옴
-                this.$data.num = this.$data.num + e2;
-                //this.$set(this.$data, "num", this.$data++);
-            },
-        }
-    })
-</script>
+        <== 실습 </div> </body> </html> <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */
+            </script>
+            <script>
+                new Vue({
+                    el: "#app1",
+                    data: {
+                        num: 0,
+                    },
+                    methods: {
+                        clickBtn: function (e1) {
+                            this.$data.num = this.$data.num + 1;
+                            //this.$set(this.$data, "num", this.$data++);
+                        },
+                    }
+                });
+                new Vue({
+                    el: "#app2",
+                    data: {
+                        num: 0,
+                    },
+                    methods: {
+                        clickBtn: function (e2) { //clickBtn(10)로 인해 e2에 10씩들어옴
+                            this.$data.num = this.$data.num + e2;
+                            //this.$set(this.$data, "num", this.$data++);
+                        },
+                    }
+                })
+            </script>
