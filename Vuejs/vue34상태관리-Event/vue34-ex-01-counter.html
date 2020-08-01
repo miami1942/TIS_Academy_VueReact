@@ -68,7 +68,9 @@
     <p></p>
 
     <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-    <component-child v-bind:num="counter" v-on:add-counter="addCounter" v-on:sub-counter="subCounter"></component-child>
+    <component-child v-bind:num="counter" v-on:add-counter="addCounter" v-on:sub-counter="subCounter">
+      
+    </component-child>
   </div>
 </body>
 

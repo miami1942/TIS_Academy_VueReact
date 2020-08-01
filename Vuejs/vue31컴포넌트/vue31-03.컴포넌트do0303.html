@@ -53,10 +53,12 @@
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     //vue인스턴스앞에다가 전역컴퍼넌트를 적는다. 
-    Vue.component("global-component", {//컴퍼넌트 이름 , 위에 적힌것이 이름이된다.
+    Vue.component("global-component", { //컴퍼넌트 이름 , 위에 적힌것이 이름이된다.
         //설정값 npdtmc^2w
         /*
         n: name
@@ -64,8 +66,8 @@
         d: data
         t: template
         */
-        props: ["propsdata"],//배열로 쓸 경우 문자열로 처리해야한다.
-        data: function () {//data는 반드시 funtion으로하고 return값을 가져야한다.
+        props: ["propsdata"], //배열로 쓸 경우 문자열로 처리해야한다.
+        data: function () { //data는 반드시 funtion으로하고 return값을 가져야한다.
             return {};
         },
         template: `
@@ -73,7 +75,7 @@
                 전역컴포넌트
                 <button v-on:click="gclick">{{propsdata}}</button>
             </div>
-        `,//백팁(`= !옆에있는거)를 쓴다
+        `, //백팁(`= !옆에있는거)를 쓴다
     });
     var localcomp = {
         //np dt mc^2 w

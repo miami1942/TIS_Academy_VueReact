@@ -45,16 +45,18 @@
 
 <!-- 임포트 -->
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app",
-        data: {//만약 키를 넣을경우 키부분은 문자열""로 만든다
+        data: { //만약 키를 넣을경우 키부분은 문자열""로 만든다
             img: null,
         },
         methods: {
-            mylcick: function (event) {//event로 받아온것들중 target을 보면 id값등 많이 있다. 거기서받아오자
-                console.log(event);//target은 태그값 자체이다.  
+            mylcick: function (event) { //event로 받아온것들중 target을 보면 id값등 많이 있다. 거기서받아오자
+                console.log(event); //target은 태그값 자체이다.  
                 var id = event.target.id;
                 if (this.$data.img === null) {
                     event.target.src = "../images/im" + id + ".jpg";
@@ -62,8 +64,7 @@
                 }
                 if (id === "img") {
                     event.target.src = this.$data.img.null;
-                }
-                else
+                } else
                     event.
             }
         },

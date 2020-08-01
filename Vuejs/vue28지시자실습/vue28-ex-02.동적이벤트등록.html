@@ -47,9 +47,9 @@
 
             도전2.
             p 태그를 클릭한 경우에만
-        <p id="rhtml"> 에 click 한 태그를 출력하도록 조건을 추가하시오.
-            span 태그에서 클릭한 경우에는 표시하지 않는다.
-            node의 태그이름을 어떻게 알 수 있을까?
+            <p id="rhtml"> 에 click 한 태그를 출력하도록 조건을 추가하시오.
+                span 태그에서 클릭한 경우에는 표시하지 않는다.
+                node의 태그이름을 어떻게 알 수 있을까?
     </xmp>
     <hr>
     <div id="app">
@@ -74,18 +74,20 @@
 
         <p id="rhtml" v-html="rhtml" style="background-color: white; border: 1px dashed blue;">
             결과
-        <p></p>
+            <p></p>
         </p>
     </div>
 </body>
 
 </html>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
 <script>
     new Vue({
         el: "#app",
-        data: {//for문은 배열로
+        data: { //for문은 배열로
             ptags: [],
             stags: [],
             rhtml: null,
@@ -93,10 +95,12 @@
         methods: {
             clickPtag: function () {
                 //참조타입변수는 재할당해야 해서 vue.set을 썼다.
-                Vue.set(this.$data.ptags, this.$data.ptags.length, this.$data.ptags.length + "p paragraph!!!")
+                Vue.set(this.$data.ptags, this.$data.ptags.length, this.$data.ptags.length +
+                    "p paragraph!!!")
             },
             clickStag: function () {
-                Vue.set(this.$data.stags, this.$data.stags.length, this.$data.stags.length + "span paragraph!!!")
+                Vue.set(this.$data.stags, this.$data.stags.length, this.$data.stags.length +
+                    "span paragraph!!!")
             },
             clickDynamic: function (event) {
                 console.log(event, event.target);
