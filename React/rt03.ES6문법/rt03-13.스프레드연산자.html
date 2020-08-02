@@ -10,24 +10,74 @@
 
 <body>
     <xmp>
+        es6 코드를 브라우저에서 실행하려면 바벨이 필요하다
         스프레드 사용법을 학습한다.
 
+        ~es5에서~
         arguments 매개변수는 유사 배열 객체다.
-            length 프로퍼티가 있다.
-            Array  메서드를 사용할 수 없다.
-            arrow function에서는 arguments는 사용할 수 없다.
+        length 프로퍼티가 있다.
+        Array 메서드를 사용할 수 없다.
+        console.log("Arr", Arr)
+        console.log("Arr", Arr)
+        arrow function에서는 arguments는 사용할 수 없다.
+        console.log("arr", arr)
+        console.log("arr", arr)
 
-        rest 매개변수는 배열이다.
-            Spread 연산자(...)를 사용하여 함수의 매개변수를 작성한 형태다.
-            함수의 매개변수로 넘어오는 값들을 "배열"로 만든다.
+        ~es6에서~
+        rest 매개변수는 배열이다.(...가 함수에서 사용될떄는 rest)
+        Spread 연산자(...)를 사용하여 함수의 매개변수를 작성한 형태다.
+        함수의 매개변수로 넘어오는 값들을 "배열"로 만든다.
 
         Spread 연산자는 ... 이다.
-            이터러블(iterable) 객체를 "개별" 요소로 분리
-            이터러블(iterable) 객체에는 Array, String, Map, Set 등이 있다.
-            iterator를 생성해서 next()로 순회할 수 있는 자료구조가 이터러블
+        이터러블(iterable) 객체를 "개별" 요소로 분리(...가 변수에서 사용될떄는 spread)
+        이터러블(iterable) 객체에는 Array, String, Map, Set 등이 있다.
+        console.log("Arr", Arr)
+        console.log("Arr", Arr)
+
+        iterator를 생성해서 next()로 순회할 수 있는 자료구조가 이터러블
     </xmp>
 </body>
 
 </html>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* JSX를 자바스크립트로 변환 */
+</script>
+<script type="text/babel">
+    //stread연산자 학습
+    const cities = ["K", "N", , "L"];
+    console.log("cities", ...cities); //spread연산자 변수에 ...을 붙혀서 사용하며 개별요소로 분해할때 사용
+    //...cities에서 ...는 spreed연산자라 부른다. cities[0], cities[1], cities[2] 를 그냥...으로 표현가능
+
+    const east = ["U", "K", "L"];
+    const west = ["H", "C", "G"];
+    const states = [...east, ...west]; //["U", "K", "L" "H", "C", "G"
+    console.log("states", states);
+
+    function func(...abc) {
+        //rest 연산자는 함수의 매개변수에 ...을 사용하는 경우이다. 개별요소를 배열로 만들떄 사용 spread와 반대
+    }
+
+    let lakes = ["경포호", "화긴호", "청자호", "송지호"];
+    let [first, ...rest] = lakes;
+    console.log("rest", rest);
+    console.log("first", first);
+
+    /*es5로 작성시
+    function multiply(mutiplie, ...theArgs){
+        return theArgs.map(function(element){
+            return mutiplier*element;
+        });
+    }
+*/
+    //es6로 작성시
+    //rest연산자와 화살표함수
+    //부모의 데이터를 자식한테 전부 넘기는건 spread 연산자(...)를 사용한다.
+    function multiply(mutiplier, ...theArgs) {
+        //자식
+        return theArgs.map((element) => mutiplier * element);
+    }
+    let arr = multiply(2, 1, 2, 3, 4); //arr ==[2,4,6,8] 부모
+    console.log("arr >>", arr); //array 출력
+    console.log("...arr >>", ...arr); //2,4,6,8
+</script>

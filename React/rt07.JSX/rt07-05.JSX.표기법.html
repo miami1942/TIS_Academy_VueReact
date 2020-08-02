@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 </head>
 
 <body>
@@ -22,6 +22,7 @@
         --------------------------
         1. 태그의 class 속성은 className 으로
         2. 태그의 style 속성은 직접 작성이 불가하다.
+        3. props를 이용하여 hello. react가 출력되게 하십시오.
     </xmp>
     <hr>
 
@@ -33,6 +34,41 @@
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import { React} from 'react'; */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* JSX를 자바스크립트로 변환 */
+</script>
 
+<script type="text/babel">
+    console.log("React>>", React)
+    console.log("React.Component>>", React.Component)
+    console.log("ReactDOM>>", ReactDOM)
 
-
+    class JSX extends React.Component {
+        state = {
+            style: {
+                border: "2px solid red",
+                backgroundColor: "red",
+            }
+        }
+        render() {//랜더함수안에 넣을떄 class를 className으로 바꿔야함 스타일은 못씀
+            return (
+                <div className="my-div">
+                    <div style={this.state.style}>
+                        {/*props를 이용하여 hello. react가 출력되게 하십시오.*/}
+                        {this.props.mesg}
+                    </div>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(
+        <JSX mesg={"hello, react"}></JSX>,
+        document.getElementById("app")
+    )
+</script>

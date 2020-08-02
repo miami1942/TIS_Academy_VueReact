@@ -7,10 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>조건부 렌더링</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 </head>
 
 <body>
+    <!--
+        1.리엑트객체 플러그인임포트
+        2.리엑트객체 임포트 확인
+        3.리엑트컴포넌트만들기 (렌더 필수)
+        컴포넌트 종류
+        -클래스형
+        -함수형
+        -고차함수형(하이오더,)->클래스의 상속구현을 위해서
+        ((
+            함수형컴포넌트(아래참고)
+            function UserGreeting(props) {
+                return <h1>Welcome back!</h1>;
+            }
+
+            function GuestGreeting(props) {
+                return <h1>Please sign up.</h1>;
+            }
+        ))
+        4.리엑트돔 컴포넌트만들기
+    -->
     <xmp>
         조건부 렌더링
 
@@ -26,6 +46,53 @@
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import { React} from 'react'; */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* JSX를 자바스크립트로 변환 */
+</script>
 
+<script type="text/babel">
+    console.log("React>>", React)
+    console.log("React.Component>>", React.Component)
+    console.log("ReactDOM>>", ReactDOM)
 
-
+    function UserGreeting(props) {
+        //넘겨받은 isLogin값
+        return <h1>Welcome back! {props.isLogin + ""}</h1>;
+    }
+
+    function GuestGreeting(props) {
+        return <h1>Please sign up.</h1>;
+    }
+
+    class Greeting extends React.Component {
+        render() {
+            //isLogin의 값에따라 리턴하는 컴포넌트를 분기한다
+            //isLogin은 부모로부터 받는 값이다.
+            const isLogin = this.props.isLogin;
+
+            //코드 추가. 부모로부터 받은 props를 자식 컴포넌트에 넘기시오
+            if (isLogin) {
+                return (
+                    <UserGreeting {...this.props}></UserGreeting>//열개던 백개던 한번에 준다
+                );
+            }
+            else {
+                return (
+                    <GuestGreeting {...this.props}></GuestGreeting>//함수를 받아올 약속 <>안에 함수가있으면 함수인줄안다 html말고 다른건 화면에 표시가안된다
+                    //즉 이건 GuestGreeting(props)이므로 실행 결과인 <h1>Please sign up.</h1>을 줄 것이다
+                );
+            }
+        }
+    }
+    ReactDOM.render(
+        <Greeting isLogin={true}></Greeting>,
+        document.getElementById("app")
+    )
+
+</script>
