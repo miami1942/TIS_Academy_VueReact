@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,23 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
     <style>
-        .strong {color:red; font-weight:bold; font-size:1.2em;}
-        label { display: inline-block; width: 80px;}
-        #app > div { margin: 5px 0 ;}
+        .strong {
+            color: red;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+
+        #app>div {
+            margin: 5px 0;
+        }
     </style>
 </head>
+
 <body>
     <pre>
         CRUD 방법을 학습한다.
@@ -28,6 +41,7 @@
     </pre>
     <hr>
     <div id="app">
+        <!--
         <div>
             <h1>Creat Read Update Delete</h1>
             <div><label for="">Name : </label> <input type="text"></div>
@@ -77,13 +91,182 @@
                 </tr>
             </tbody>
         </table>
+        -->
     </div>
 
 </body>
+
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
+    //단계3. React 객체 import 여부 확인
+    console.log(React);
+    console.log(ReactDOM);
 
-
+    class CrudApp extends React.Component {
+        state = {
+            list: [
+                { id: 1, name: "슈퍼맨", power: 100 },
+                { id: 2, name: "아쿠아맨", power: 300 },
+                { id: 3, name: "스파이더맨", power: 500 },
+                { id: 4, name: "배트맨", power: 30 },
+            ]
+        }
+        constructor(props) {
+            super(props)
+
+            this.insert = this.insert.bind(this);
+        }
+        insert(man) {
+            //이벤트 핸들러 this bind
+            //this.state.list에 추가
+            var maxObj = this.$data.list.reduce(function (prev, next) {
+                return prev.id > next.id ? prev : next;
+            });
+            console.log("maxObj", maxObj);
+
+
+            user.id = maxObj.id + 1
+
+            //user를 this.$data.list에 추가하시오
+            //참조타입 변수는 재할당(=깊은복사) 필요
+            //방법 1 - Vue.set()
+            //방법 2 - Array.concat()
+            //방법 3 - spreed 연산자
+
+            Vue.set(this.$data.list, this.$data.list.length, user);
+
+
+            if (maxObj) {
+                user.id = maxObj.id + 1
+            }
+            else {
+                user.id = 1;
+
+                const listCopy = [...this.state.list, user];
+                this.setState({
+                    list: listCopy
+                })
+            }
+        }
+        render() {
+            return (//{...this.state}로 위의 스테이트값 다 주기
+                <div>
+                    <CrudInput>
+                    </CrudInput>
+                    <CrudList {...this.state}>
+                    </CrudList>
+                </div>
+            )
+        }
+    }
+    class CrudList extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            const rows = this.props.list;
+            /*{rows.map(function (value, key) { return (<li key={key}> {value} </li>) })}*/
+            const trs = rows.map(function (man, index) {//반복문은 반드시 key값을 써야함
+                //man = {id, name, power}
+                return (
+                    <CrudListItem man={man} key={man.id}>
+                    </CrudListItem>
+                )
+            });
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>POWER</th>
+                            <th>CRUD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {trs}
+                    </tbody>
+                </table>
+            )
+        }
+    }
+    class CrudListItem extends React.Component {
+        render() {
+            console.log(this.props.man, this.props.index)
+            const { id, name, power } = this.props.man;
+            return (
+                <tr className="">
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{power}</td>
+                    <td>
+                        <button>Del</button>
+                        <button>Power Up</button>
+                        <button>Power Down</button>
+                        <button>Edit</button></td>
+                </tr>
+            );
+        }
+    }
+    class CrudInput extends React.Component {
+        constructor(props) {
+            super(props)
+            this.insert = this.insert.bind(this);//this는 CrudInput
+        }
+        insert(event) {
+            //이벤트 핸들러 this bind
+
+            //부모cludapp에 값을 넘긴다.
+            const user = {
+                name: "saaa",
+                power: 10000,
+            }
+            this.props.insert(user);
+        }
+        render() {
+            return (
+                <div>
+                    <h1>Creat Read Update Delete</h1>
+                    <div>
+                        <label htmlFor="">Name : </label>
+                        <input type="text" />
+                    </div>
+                    <div>
+                        <label htmlFor="">Power : </label>
+                        <input type="text" />
+                    </div>
+                    <button onClick={this.insert}>Add</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <CrudApp>
+        </CrudApp>
+        ,
+        document.getElementById("app")
+    )
+
+</script>

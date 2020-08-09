@@ -7,9 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>react 번개 카운터</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
     <style>
-        h1,h2,h3,h4,h5,h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             color: white;
         }
     </style>
@@ -23,14 +28,18 @@
     </xmp>
 
     <div id="app">
-        <div style="width: 250px; background-color: black; padding: 0px; border-radius: 10px; text-align: center; margin: 0px; font-family: sans-serif; color: white;">
+        <!--
+            <div
+            style="width: 250px; background-color: black; padding: 0px; border-radius: 10px; text-align: center; margin: 0px; font-family: sans-serif; color: white;">
             <h1 style="color: rgb(102, 255, 255); font-size: 50px;">2700</h1>
             <h2 style="margin: 0px; padding: 0px; font-family: sans-serif; color: white;">번개</h2>
-            <h2 style="margin: 0px; padding: 0px; font-family: sans-serif; color: white; font-size: 38px;" >강조</h2>
-            <p  style="margin: 0px; padding: 0px; font-family: sans-serif; color: white; font-size: 17px; opacity: 0.5; ">
+            <h2 style="margin: 0px; padding: 0px; font-family: sans-serif; color: white; font-size: 38px;">강조</h2>
+            <p
+                style="margin: 0px; padding: 0px; font-family: sans-serif; color: white; font-size: 17px; opacity: 0.5; ">
                 since you loaded this example
             </p>
         </div>
+    -->
     </div>
 </body>
 
@@ -40,4 +49,79 @@
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
 
-
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
+    //단계3. React 객체 import 여부 확인
+    console.log(React);
+    console.log(ReactDOM);
+
+    class StyleInherit extends React.Component {
+        styleDiv = {
+            width: "250px",
+            backgroundColor: "black",
+            padding: "0px",
+            borderRadius: "10px",
+            textAlign: "center",
+            margin: "0px",
+            fontFamily: "sans - serif",
+            color: "white",
+        }
+        styleH1 = {
+            color: "rgb(102, 255, 255)",
+            fontSize: "50px",
+        }
+        styleCommon = {
+            margin: "0px",
+            padding: "0px",
+            fontFamily: "sans-serif",
+            color: "white",
+        }
+        styleEmphasis = {
+            ...this.styleCommon,
+            fontSize: "38px",
+        }
+        styleSmall = {
+            ...this.styleCommon,
+            fontSize: "17px",
+            opacity: "0.5",
+        }
+
+        //갚이 안바뀌면 여기같은 필드에
+        render() {//값이 바뀔수 잇으면 여기에 넣는게 좋음
+            return (
+                <div style={this.styleDiv}>
+                    <h1 style={this.styleH1}>2700</h1>
+                    <h2 style={this.styleCommon}>번개</h2>
+                    <h2 style={this.styleEmphasis}>강조</h2>
+                    <p style={this.styleSmall}>
+                        since you loaded this example
+                    </p>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <StyleInherit>
+        </StyleInherit>
+        ,
+        document.getElementById("app")
+    )
+
+</script>

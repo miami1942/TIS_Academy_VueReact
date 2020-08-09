@@ -10,11 +10,13 @@
         body {
             background-color: lightgrey;
         }
-        body > * {
+
+        body>* {
             text-align: center;
             vertical-align: middle;
             line-height: 2em;
         }
+
         p {
             top: 50%;
             text-align: center;
@@ -23,7 +25,7 @@
 
         header {
             background-color: orange;
-            margin: 10px 0 ;
+            margin: 10px 0;
             width: 100%;
             height: 60px;
         }
@@ -31,23 +33,25 @@
         /* <div id="content-list"> */
         #content {
             background-color: white;
-            margin: 0 0 30px 0 ;
+            margin: 0 0 30px 0;
         }
 
         aside {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             height: 200px;
             float: left;
         }
+
         #content-list {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             float: right;
             height: 200px;
         }
+
         #content::after {
             clear: both;
             display: block;
@@ -55,7 +59,7 @@
         }
 
         footer {
-            margin: 10px 0 ;
+            margin: 10px 0;
             background-color: lightblue;
             width: 100%;
             height: 50px;
@@ -65,21 +69,102 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <div id="content">
-        <p>Content</p>
-        <aside>
-            Aside
-        </aside>
-        <div id="content-list">
-            List
-        </div>
-    </div>
-    <footer>
-        Footer
-    </footer>
+    <div id="app"></div>
 </body>
 
 </html>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
+    //단계3. React 객체 import 여부 확인
+    console.log(React);
+    console.log(ReactDOM);
+
+    class MyBody extends React.Component {
+        render() {
+            return (
+                <div>
+                    <MyHeader></MyHeader>
+                    <MyContent></MyContent>
+                    <MyFooter></MyFooter>
+                </div>
+            )
+        }
+    }
+    class MyHeader extends React.Component {
+        render() {
+            return (
+                <div>
+                    <header>
+                        Header
+                    </header>
+                </div>
+            )
+        }
+    }
+    class MyFooter extends React.Component {
+        render() {
+            return (
+                <div>
+                    <footer>
+                        Footer
+                    </footer>
+                </div>
+            )
+        }
+    }
+    class MyContent extends React.Component {
+        render() {
+            return (
+                <div id="content">
+                    <p>Content</p>
+                    <MyAside>
+                    </MyAside>
+                    <MyList>
+                    </MyList>
+                </div>
+            )
+        }
+    }
+    class MyAside extends React.Component {
+        render() {
+            return (
+                <aside>
+                    Aside
+                </aside>
+            )
+        }
+    }
+    class MyList extends React.Component {
+        render() {
+            return (
+                <div id="content-list">
+                    List
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        <MyBody></MyBody>, document.getElementById("app")
+    )
+
+</script>

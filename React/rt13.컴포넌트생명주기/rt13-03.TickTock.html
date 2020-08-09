@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tick Tock</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+</head>
+
+<body>
+    <pre>
+        컴포넌트 생명주기를 실습을 통해 학습한다.
+        
+        1초마다 카운트를 1씩 증가시키는 TickTok컴포넌트를 만드시오.
+
+        <img src="../images/react_life_cycle.jpg" width="800px" height="600px">
+    </pre>
+    <hr>
+
+    <div id="app">
+
+    </div>
+</body>
+
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+
+    console.log(React);
+    console.log(ReactDOM);
+
+    class TickTock extends React.Component {
+        state = {
+            counter: 0,
+            timer: null //setInterval의 핸들러를 저장하는 property
+        }
+        constructor(prorps) {
+            super(prorps);
+            //this 바인드 처리
+            //tick 매서드는 this를 바인드 해야 하는가? yes
+            this.tick = this.tick.bind(this);
+        }
+        componentDidMount() {
+            console.log("componentDidMount")
+            const aaa = window.setInterval(this.tick, 1000);
+            this.setState({
+                timer: aaa
+            })
+        }
+        tick() {
+            //counter값변경
+            const d = new Date();
+            const h = this.z2(d.getHours());
+            const m = this.z2(d.getMinutes());
+            const s = this.z2(d.getSeconds());
+
+            this.setState({
+                counter: this.state.counter + 1
+            });
+        }
+        componentDidUpdate(prevProps, prevState) {
+            console.log("componentDidUpdate")
+            if (this.state.counter >= 10) {
+                window.clearInterval(this.state.timer)
+            }
+
+        }
+        //마운트되서 스테이트값이 바뀌면 did없데이트 한다
+        render() {
+            return (
+                <div>
+                    react current counter : {this.state.counter}
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(
+        <TickTock></TickTock>, document.getElementById("app")
+    )
+
+</script>

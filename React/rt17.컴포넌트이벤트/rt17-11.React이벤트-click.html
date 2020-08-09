@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
         .App {
@@ -22,23 +22,24 @@
         click 이벤트 핸들러 작성을 실습한다.
 
         1. 2개의 div 태그를 만들고 각각에 스타일을 적용한다.
-            style1 {
-                width: 100px;
-                height: 100px;
-                background: gray;
-                line-height: 100px;
-            }
-            style2 {
-                width: 100px;
-                height: 100px;
-                background: yellow;
-                line-height: 100px;
-            }
+        style1 {
+        width: 100px;
+        height: 100px;
+        background: gray;
+        line-height: 100px;
+        }
+        style2 {
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        line-height: 100px;
+        }
         2. div의 click 이벤트 핸들러를 작성하고 콘솔에 this 값을 출력한다.
-            console.log( this)
+        console.log( this)
     </xmp>
 
-    <div id="app"></div>
+    <div id="app">
+    </div>
 </body>
 
 </html>
@@ -47,5 +48,72 @@
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
+    //단계3. React 객체 import 여부 확인
+    console.log(React);
+    console.log(ReactDOM);
 
-
+    class Greeting extends React.Component {
+        constructor(props) {
+            //this.bind
+            super(props);//super = 부모 React.Component를 의미
+            this.handlerClick2 = this.handlerClick2.bind(this);
+        }
+        handlerClick1(event) {
+            console.log("this=", this)//bind가 안되면 this 는 undefind
+        }
+        handlerClick2(event) {
+            console.log("this=", this)//bind가 되면 this는 컴포넌트다
+        }
+        render() {
+            var style1 = {
+                width: "100px",
+                height: "100px",
+                background: "gray",
+                lineHeight: "100px",
+            }
+            var style2 = {
+                width: "100px",
+                height: "100px",
+                background: "yellow",
+                lineHeight: "100px",
+            }
+            return (//이벤트는 태그 안에다가한다
+                //handlerClick은 컴포넌트꺼 this붙히고 붙혔으니 랜더함수 밖에 만든다.
+                <div>
+                    <div style={style1} onClick={this.handlerClick1}>
+                        div1
+                    </div>
+                    <div style={style2} onClick={this.handlerClick2}>
+                        div2
+                    </div>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Greeting>
+        </Greeting>
+        ,
+        document.getElementById("app")
+    )
+
+</script>

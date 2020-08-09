@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Color Card</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        body > div {
+        body>div {
             padding: 50px;
             background-color: #ffffff;
         }
+
         .card {
             display: inline-block;
             height: 200px;
@@ -23,10 +25,12 @@
             webkit-filter: drop-shadow(0px 0px 5px #666666);
             filter: drop-shadow(0px 0px 5px #666666);
         }
+
         .square {
             height: 150px;
             background-color: #ff6663;
         }
+
         .label {
             font-family: sans-serif;
             font-weight: bold;
@@ -36,6 +40,7 @@
         }
     </style>
 </head>
+
 <body>
     <xmp>
         CSS로 만든 카드를 컴포넌트로 만들어 본다.
@@ -69,11 +74,80 @@
 
     </div>
 </body>
+
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
 
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
 
-
+    console.log(React);
+    console.log(ReactDOM);
+    //컴포넌트 3개만들기, label, squrie, card
+
+    class Label extends React.Component {
+        render() {
+            var styleLabel = {
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+                padding: "13px",
+                margin: "0",
+                textAlign: "center",
+            }
+            return (
+                <div style={styleLabel}>
+                    {this.props.color}
+                </div >
+            );
+        }
+    }
+    class Squire extends React.Component {
+        render() {
+            var styleSquire = {
+                height: "150px",
+                backgroundColor: "#ff6663",
+            }
+            return (
+                <div style={styleSquire}>
+                    {this.props.color}
+                </div>
+            );
+        }
+    }
+    class Card extends React.Component {
+
+        render() {
+            var styleCard = {
+                display: "inline-block",
+                height: "200px",
+                width: "150px",
+                padding: "0",
+                margin: "10px",
+                backgroundColor: "#ffffff",
+                filter: "drop-shadow(0px 0px 5px #666666)",
+            }
+            return (//props로 넘기면 다 넘어간다 (편함)
+                <div style={styleCard}>
+                    <Squire  {...this.props}>
+                    </Squire>
+                    <Label{...this.props}></Label>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <div>
+            <Card color={"#ff6663"}></Card>
+            <Card color={"#ffa737"}></Card>
+        </div>
+        , document.getElementById("app")
+    )
+</script>

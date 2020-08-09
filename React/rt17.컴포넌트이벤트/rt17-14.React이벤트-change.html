@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,21 +30,74 @@
         아니면 failure 클래스를 적용하시오.
 
         .success {
-            background-color: green;
+        background-color: green;
         }
 
         .failure {
-            background-color: red;
+        background-color: red;
         }
     </xmp>
 
     <div id="app"></div>
 </body>
+
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
 
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
 
-
+    console.log(React);
+    console.log(ReactDOM);
+
+    class CompInput extends React.Component {
+        state = {
+            className: "failure",
+        }
+
+        constructor(props) {
+            super(props);//super = 부모 React.Component를 의미
+            this.handleChange = this.handleChange.bind(this);
+        }
+        handleChange(event) {
+            console.log(event.target.name, event.target.value);
+            //event.target.value === "0000" 이면 success
+            //event.target.value === "0000"이 아니면 failure
+            var myclassName = "";
+            if (event.target.value === "0000") {
+                myclassName = "success";
+            }
+            else {
+                myclassName = "failure"
+            }
+            //this.state에 값을 저장 =>setState()를 사용 그래야 컴포넌트가 새로고침됨
+            this.setState({
+                className: myclassName
+            })
+        }
+        render() {
+            return (
+                <input
+                    type="password"
+                    name="password"
+                    className={this.state.className}
+                    onChange={this.handleChange}
+                />
+            )
+        }
+    }
+    ReactDOM.render(
+        <CompInput>
+        </CompInput>
+        ,
+        document.getElementById("app")
+    )
+
+</script>

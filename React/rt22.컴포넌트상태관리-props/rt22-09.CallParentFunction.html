@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,13 +13,13 @@
         #parent {
             background-color: lightblue;
             padding: 50px;
-		}
+        }
 
         #child {
             background-color: lightcoral;
             margin: 50px;
             padding: 20px;
-		}
+        }
     </style>
 </head>
 
@@ -35,23 +36,110 @@
     <hr>
 
     <div id="app">
-        <div id="parent">
+
+        <!--<div id="parent">
             <div id="child">
                 4
-                <br/>
+                <br />
                 I am a child
-                <br/>
+                <br />
                 <button onClick="doParentToggleFromChild">
                     toggle
                 </button>
             </div>
-        </div>
+        </div>-->
     </div>
 </body>
+
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
 
-
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
+    //단계3. React 객체 import 여부 확인
+    console.log(React);
+    console.log(ReactDOM);
+
+
+    //데이터는 부모에서 자식으로만 흐르도록한다 부모에서 바꾼다 자식에서말고
+    class Child extends React.Component {
+        state = {
+            counter: 0
+        }
+        constructor(props) {//이벤트 핸들러 있으면 반드시 필요 return에서 올라오는거임
+            super(props)
+            //부모로부터 받은 값을 state에 저장
+            this.state.counter = this.props.counter
+            this.doParentToggleFromChild = this.doParentToggleFromChild.bind(this);
+        }
+        doParentToggleFromChild(event) {
+            this.state.counter = this.state.counter + 1;//부모의 스테이트가 바뀌는 순간 화면아 리랜더링됨
+            this.props.parentToggle(1);
+        }
+        render() {
+            return (
+                <div id="child">
+                    4
+                    <br />
+                         I am a child
+                    <br />
+                    <button onClick={this.doParentToggleFromChild}>
+                        toggle
+                    </button>
+                </div>
+            )
+        }
+    }
+    class Parent extends React.Component {
+        state = {
+            counter: 0
+        }
+        constructor(props) {
+            super(props)
+
+            this.doParentToggle = this.doParentToggle.bind(this);
+        }
+        doParentToggle(params) {//click이벤트 핸들러
+            console.log("child click")
+            //자식으로부터 받은 값으로 state 변경
+            const aaa = this.state.counter + Number(params);
+            this.setState({
+                counter: aaa
+            })
+        }
+        render() {
+            //자식으로 넘기고 싶은 것 : state.counter, doParentToggle() 메서드
+            return (//함수를 메서드의 인자값으로 넘김
+                <div id="parent">
+                    <Child counter={this.state.counter} parentToggle={this.doParentToggle}></Child>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Parent>
+        </Parent>
+        ,
+        document.getElementById("app")
+    )
+</script>

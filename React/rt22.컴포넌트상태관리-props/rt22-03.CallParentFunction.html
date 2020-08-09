@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+
+    <style>
+        #parent {
+            background-color: lightblue;
+            padding: 50px;
+		}
+
+        #child {
+            background-color: lightcoral;
+            margin: 50px;
+            padding: 20px;
+		}
+    </style>
+</head>
+
+<body>
+    <pre>
+
+    자식 -> 부모 데이터 전달하는 예제를 작성한다.
+
+    부모 컴포넌트에서 자식 컴포넌트로 함수를 props 로 전달하고
+    자식 컴포넌트에서 부모 컴포넌트의 함수를 호출하는 식으로 데이터를 넘긴다.
+
+
+    </pre>
+    <hr>
+
+    <div id="app">
+        <div id="parent">
+            <div id="child">
+                4
+                <br/>
+                I am a child
+                <br/>
+                <button onClick="doParentToggleFromChild">
+                    toggle
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
+
+
