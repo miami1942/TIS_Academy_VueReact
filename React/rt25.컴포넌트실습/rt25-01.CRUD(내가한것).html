@@ -41,6 +41,7 @@
     </pre>
     <hr>
     <div id="app">
+        <!--
         <div>
             <h1>Creat Read Update Delete</h1>
             <div><label for="">Name : </label> <input type="text"></div>
@@ -90,6 +91,7 @@
                 </tr>
             </tbody>
         </table>
+        -->
     </div>
 
 </body>
@@ -98,18 +100,30 @@
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
 <script type="text/babel">
-
+    /*
+    
+        단계1: 스크립트 플러그인 추가하기
+        단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+            import React from 'react';
+            import React, {Component} from 'react';
+            import ReactDOM from 'react-dom';
+        단계3. React 객체 import 여부 확인
+            console.log(React);
+            console.log(ReactDOM);
+        단계4. React.Component 만들기
+        단계5. ReactDOM.render() 에 컴포넌트 주입
+    */
     //단계3. React 객체 import 여부 확인
     console.log(React);
     console.log(ReactDOM);
 
-    //단계4. 컴포넌트 만들기   
     class CrudApp extends React.Component {
         state = {
             list: [
@@ -122,31 +136,16 @@
         constructor(props) {
             super(props)
 
-            // this bind
             this.insert = this.insert.bind(this);
             this.doUp = this.doUp.bind(this);
             this.doDown = this.doDown.bind(this);
             this.doDel = this.doDel.bind(this);
             this.doEdit = this.doEdit.bind(this);
+
         }
         insert(user) {
-            // 이벤트 콜백 this bind
-            // this.state.list 에 추가
-
-            /* 
-            max(id)를 찾는 방법 
-            1. reduce() 메서드 사용.
-                var maxObj = array.reduce( function(prev, next){
-                    return prev.id > next.id ? prev:  next ; // 최대값 id가 있는 객체 
-                    return prev.id < next.id ? prev:  next ; // 최소값 id가 있는 객체 
-                });
-                var newId  = maxObj.id + 1;
-            2. map()과 Math.max()를 사용하는 방법
-                var arrIds = array.map( function(el){
-                    return el.id;
-                });
-                var newId  = Math.max(...arrIds) + 1;                
-            */
+            //이벤트 핸들러 this bind
+            //this.state.list에 추가
             var maxObj = this.state.list.reduce(function (prev, next) {
                 return prev.id > next.id ? prev : next;
             });
@@ -168,16 +167,14 @@
             })
         }
         doUp(userid) {
-            console.log(userid);
-
+            console.log("userid", userid);
             var users = this.state.list.map(function (man) {
-                if (man.id == userid) {
+                if (man.id = userid) {
                     man.power = Number(man.power) + 100;
                 }
                 return man;
             }, userid);
-            console.log(users); // users == 배열, user== 객체 
-
+            console.log(users);//user==배열, user=객체
             this.setState({
                 list: users
             })
@@ -199,13 +196,12 @@
 
         }
         doDel(userid) {
-            // 배열에서 삭제
-            let r = window.confirm("삭제하시겠습니까?");
+            //배열에서 삭제
+            let r = window.confirm("삭제하시겠습니까?")
             if (r) {
                 let listCopy = this.state.list.filter(function (man, index) {
                     return man.id !== userid ? true : false;
                 })
-
                 this.setState({
                     list: listCopy
                 })
@@ -225,49 +221,182 @@
                 list: listCopy
             })
         }
+
         render() {
-            return (
+            { }
+            return (//{...this.state}로 위의 스테이트값 다 주기
                 <div>
-                    <CrudInput
-                        insert={this.insert}
-                    />
-                    <hr />
-                    <CrudList
-                        {...this.state}
+                    <CrudInput insert={this.insert}>
+                    </CrudInput>
+                    <CrudList {...this.state}
                         doUp={this.doUp}
                         doDown={this.doDown}
                         doEdit={this.doEdit}
-                        doDel={this.doDel}
-                    />
+                        doDel={this.doDel}>
+                    </CrudList>
                 </div>
+            )
+        }
+    }
+    class CrudList extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            const rows = this.props.list;
+            /*{rows.map(function (value, key) { return (<li key={key}> {value} </li>) })}*/
+            const trs = rows.map((man, index) => {//반복문은 반드시 key값을 써야함
+                //man = {id, name, power}
+                return (
+                    <CrudListItem
+                        man={man}
+                        key={man.id}
+                        {...this.props}//부모에게 있는거 다 넘기기
+                    >
+                    </CrudListItem>
+                )
+            });
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>POWER</th>
+                            <th>CRUD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {trs}
+                    </tbody>
+                </table>
+            )
+        }
+    }
+    class CrudListItem extends React.Component {
+        state = {
+            isEditMode = false
+        }
+
+        constructor(props) {
+            super(props)
+            //this bind
+            this.doUp = this.doUp.bind(this);
+            this.doDown = this.doDown.bind(this);
+            this.doDel = this.doDel.bind(this);
+            this.doEdit = this.doEdit.bind(this);
+            this.doSave = this.doSave.bind(this);
+
+            // ref 생성
+            this.refUserName = React.createRef();
+            this.refUserPower = React.createRef();
+        }
+        doUp() {
+            const id = this.props.man.id;
+            this.props.doUp(id) //CrudApp.doUp() 호출
+        }
+        doDown() {
+            const id = this.props.man.id;
+            this.props.doDown(id) //CrudApp.doUp() 호출
+        }
+        doDel() {
+            const id = this.props.man.id;
+            this.props.doDel(id) //CrudApp.doUp() 호출
+        }
+        doEdit(e) {
+            this.setState((prevSate, prop) => {
+                return {
+                    isEditMode: !prevSate.isEditMode
+                }
+            });
+        }
+        doSave(e) {
+            //isEditMode바꾸기
+            this.setState((prevSate, prop) => {
+                return {
+                    isEditMode: !prevSate.isEditMode
+                }
+            });
+            //수정값 crudApp로 보내기
+            const id = this.props.man.id;
+            const name = this.refUserName.current.value;
+            const power = this.refUserPower.current.value;
+
+            const newMan = {
+                id: id,
+                name: name,
+                power: power,
+            }
+        }
+        render() {
+            console.log(this.props.man, this.props.index)
+            const { id, name, power } = this.props.man;
+
+            const formView = (
+                <tr className="">
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{power}</td>
+                    <td>
+                        <button onClick={this.doDel}>Del</button>
+                        <button onClick={this.doUp}>Power Up</button>
+                        <button onClick={this.doDown}>Power Down</button>
+                        <button onClick={this.doEdit}>Edit</button></td>
+                </tr>
+            )
+            const formEdit = (
+                <tr className="">
+                    <td>{id}</td>
+                    <td><input type="text"
+                        name="name"
+                        ref={this.refUserName}
+                        defaultValue={name} /></td>
+                    <td><input type="text"
+                        name="power"
+                        ref={this.refUserPower}
+                        defaultValue={power} /></td>
+                    <td>
+                        <button onClick={this.doDel}>Del</button>
+                        <button onClick={this.doUp}>Power Up</button>
+                        <button onClick={this.doDown}>Power Down</button>
+                        <button onClick={this.doEdit}>Edit</button></td>
+                </tr>
+            )
+            return (
+                <tr className="">
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{power}</td>
+                    <td>
+                        <button onClick={this.doDel}>Del</button>
+                        <button onClick={this.doUp}>Power Up</button>
+                        <button onClick={this.doDown}>Power Down</button>
+                        <button onClick={this.doEdit}>Edit</button></td>
+                </tr>
             );
         }
     }
-
     class CrudInput extends React.Component {
         state = {
             name: "",
-            power: 0,
+            power: 0
         }
         constructor(props) {
-            super(props)
-
-            // this bind
+            super(props)//this는 CrudInput
+            // 이벤트 핸들러 this bind
             this.insert = this.insert.bind(this);
 
-            // ref 생성
+            //ref 생성
             this.refUserName = React.createRef();
             this.refUserPower = React.createRef();
         }
         insert(event) {
             // 이벤트 핸들러 this bind
 
-            // 유효성 검사: 생략
-
             // 부모(CrudApp)에게 값을 넘긴다.
             const user = {
                 name: this.refUserName.current.value,
-                power: Number(this.refUserPower.current.value),
+                power: Number(this.refUserName.current.value),
             }
             this.props.insert(user);
         }
@@ -299,154 +428,11 @@
             );
         }
     }
-    class CrudList extends React.Component {
-        constructor(props) {
-            super(props)
-        }
-        render() {
-            const rows = this.props.list;
-            /*  { items.map( function(value,key){ return ( <li key={key}> {value} </li> ) } ) }  */
-            const trs = rows.map((man, index) => {
-                /* man = {id: 1, name:"슈퍼맨", power: 100 }, */
-                return (
-                    <CrudListItem
-                        key={man.id}
-                        man={man}
-                        {...this.props}
-                    />
-                )
-            });
+    ReactDOM.render(
+        <CrudApp>
+        </CrudApp>
+        ,
+        document.getElementById("app")
+    )
 
-            return (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>NAME</th>
-                            <th>POWER</th>
-                            <th>CRUD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {trs}
-                    </tbody>
-                </table>
-            );
-        }
-    }
-
-    class CrudListItem extends React.Component {
-        state = {
-            isEditMode: false
-        }
-        constructor(props) {
-            super(props)
-            //this bind
-            this.doUp = this.doUp.bind(this);
-            this.doDown = this.doDown.bind(this);
-            this.doDel = this.doDel.bind(this);
-            this.doEdit = this.doEdit.bind(this);
-            this.doSave = this.doSave.bind(this);
-
-            // ref 생성
-            this.refUserName = React.createRef();
-            this.refUserPower = React.createRef();
-        }
-        doUp(e) {
-            const id = this.props.man.id;
-            this.props.doUp(id) // CurdApp.doUp() 호출
-        }
-        doDown(e) {
-            const id = this.props.man.id;
-            this.props.doDown(id) // CurdApp.doDown() 호출
-        }
-        doDel(e) {
-            const id = this.props.man.id;
-            this.props.doDel(id) // CurdApp.doDel() 호출
-        }
-        doEdit(e) {
-            this.setState((prevState, prop) => {
-                return {
-                    isEditMode: !prevState.isEditMode
-                }
-            });
-        }
-        doSave(e) {
-            //isEditMode 바꾸기 
-            this.setState((prevState, prop) => {
-                return {
-                    isEditMode: !prevState.isEditMode
-                }
-            });
-
-            // 수정값 CrudApp 로 보내기
-            const id = this.props.man.id;
-            const name = this.refUserName.current.value;
-            const power = Number(this.refUserPower.current.value);
-
-            const newMan = {
-                id: id,
-                name: name,
-                power: power,
-            }
-
-            this.props.doEdit(newMan); // CrudApp.doEdit() 호출 
-        }
-        render() {
-            console.log(this.props.man, this.props.index);
-
-            const { id, name, power } = this.props.man;
-
-            const formView = (
-                <tr className="" key={id}>
-                    <td>{id}</td>
-                    <td>{name}</td>
-                    <td>{power}</td>
-                    <td>
-                        <button onClick={this.doDel}>Del</button>
-                        <button onClick={this.doUp}>Power Up</button>
-                        <button onClick={this.doDown}>Power Down</button>
-                        <button onClick={this.doEdit}>Edit</button>
-                    </td>
-                </tr>
-            )
-            const formEdit = (
-                <tr className="" key={id}>
-                    <td>{id}</td>
-                    <td>
-                        <input
-                            type="text"
-                            name="name"
-                            ref={this.refUserName}
-                            defaultValue={name}
-                        />
-                    </td>
-                    <td>
-                        {power}
-                        <input
-                            type="text"
-                            name="power"
-                            ref={this.refUserPower}
-                            defaultValue={power}
-                        />
-                    </td>
-                    <td>
-                        <button>Del</button>
-                        <button onClick={this.doUp}>Power Up</button>
-                        <button onClick={this.doDown}>Power Down</button>
-                        <button onClick={this.doSave}>Save</button>
-                    </td>
-                </tr>
-            )
-
-            if (this.state.isEditMode) {
-                return formEdit
-            }
-            else {
-                return formView
-            }
-        }
-    }
-
-    ReactDOM.render(<CrudApp></CrudApp>, document.getElementById("app"));
-</script> 
+</script>
